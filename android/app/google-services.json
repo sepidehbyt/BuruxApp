@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1074156707607",
+    "firebase_url": "https://burux-7f05d.firebaseio.com",
+    "project_id": "burux-7f05d",
+    "storage_bucket": "burux-7f05d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074156707607:android:c691c9c4dd1111f7",
+        "android_client_info": {
+          "package_name": "com.burux.burux"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074156707607-nitlc0u13mji6e481lkogkstrqkr3pnm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1kdUnR_uyolW534usvhbe9UBSurAzphk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
