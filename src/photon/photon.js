@@ -34,10 +34,10 @@ class photon extends Component {
     render() {
     
     const dataBack = [
-        {"Subcategory" : "اردیبهشت 97", "color": "white", "imageurl":"../../assets/F1.jpg"},
-        {"Subcategory" : "تیر 97", "color": "white", "imageurl":"../../assets/F2.jpg"},
-        {"Subcategory" : "مرداد 97", "color": "white", "imageurl":"../../assets/F3.jpg"},
-        {"Subcategory" : "شهریور 97", "color": "white", "imageurl":"../../assets/F4.jpg"}
+        {"Subcategory" : "اردیبهشت 97", "color": "white", "imageurl":"./F1.jpg"},
+        {"Subcategory" : "تیر 97", "color": "white", "imageurl":"./F2.jpg"},
+        {"Subcategory" : "مرداد 97", "color": "white", "imageurl":"./F3.jpg"},
+        {"Subcategory" : "شهریور 97", "color": "white", "imageurl":"./F4.jpg"}
     ];
     
     return (
@@ -67,7 +67,7 @@ class photon extends Component {
                 <Card style={styles.box}>
                 <CardItem cardBody style={{width:150,height:212}}>
                 <TouchableHighlight style={{height : 212,width:150}} onPress={() => this.props.navigation.navigate('pdfPage')}>
-                <Image source={require("../../assets/F3.jpg")} style={{height: 212,resizeMode:'stretch', width: null, flex: 1}}/>
+                <Image source={{uri:"https://image.ibb.co/bNe6u9/F3.jpg"}} style={{height: 212,resizeMode:'stretch', width: null, flex: 1}}/>
                 </TouchableHighlight>
                 </CardItem>
                 <CardItem style={{flex:1,backgroundColor:'grey'}}>
@@ -85,7 +85,7 @@ class photon extends Component {
         <Card style={{flex: 0, marginTop:"4%"}}>
             <CardItem>
               <Left>
-                <Thumbnail source={require("../../assets/F.jpg")} />
+                <Thumbnail source={{uri:"https://image.ibb.co/kCf1SU/F.jpg"}} />
              </Left>
              <Body></Body>
                 <Right>

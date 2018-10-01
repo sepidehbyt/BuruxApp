@@ -8,14 +8,19 @@ import { DrawerNavigator } from "react-navigation";
 import photonPage from '../photon/photon.js';
 import pdfPage from '../photon/pdf.js';
 import NewsPage from '../news/news.js';
+import ProductSeries from '../Products/productSeries.js';
+import productList from '../Products/productLists.js';
 
 const home = DrawerNavigator(
   {
-    NewsPage: { screen: NewsPage},
+    ProductSeries: { screen: ProductSeries},
+    LoginPage: { screen: LoginPage},
+    productList: { screen: productList},
     MainPage: { screen: MainPage},
+    RegisterPage: { screen: RegisterPage},
+    NewsPage: { screen: NewsPage},
     photonPage: { screen: photonPage},
     pdfPage: { screen: pdfPage},
-    RegisterPage: { screen: RegisterPage},
     LoginPage: { screen: LoginPage},
     WarrantyPage: { screen: WarrantyPage},
     ProductPage : { screen: ProductPage}

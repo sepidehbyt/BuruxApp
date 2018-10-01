@@ -4,12 +4,14 @@ import {Text, Image} from 'react-native';
 import { TabNavigator } from "react-navigation";
 import register from '../register/register';
 import firstPage from './firstPage';
+import LoginPage from '../login/login';
+import ProductList from '../Products/productLists.js'
 
 export default (main = TabNavigator(
     {
       FirstPage: { screen: firstPage },
-      JadeChat: { screen: register },
-      NineChat: { screen: register }
+      JadeChat: { screen: ProductList },
+      NineChat: { screen: LoginPage }
     },
     {
       tabBarPosition: "bottom",

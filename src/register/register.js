@@ -18,11 +18,16 @@ constructor(props) {
         },
       }).then((response) => response.json())
       .then((responseJson) => { 
-        if(responseJson != undefined)
-          return responseJson.access_token;
+        if(responseJson != undefined){
+          //alert(API_URL + '/auth/signup?' + 'name=' + this.state.name + '&email=' + this.state.email + '&password=' + this.state.password);
+          alert(JSON.stringify(responseJson));
+          if(responseJson.message == 'Successfully created user!')
+            this.props.navigation.navigate('LoginPage')
+        }
       })
       .catch((error) => {
-        console.error(error);
+          alert(API_URL + '/auth/signup?' + 'name=' + this.state.name + '&email=' + this.state.email + '&password=' + this.state.password);
+          console.error(error);
       });
     }
 
@@ -30,7 +35,7 @@ constructor(props) {
     return (
       <Container>
         <Header />
-        <Image source={require('../../assets/back.jpg')} style={{position:"absolute", width:"100%", height:"100%"}} />
+        <Image source={{uri:"https://image.ibb.co/e1pWu9/back.jpg"}} style={{position:"absolute", width:"100%", height:"100%"}} />
         <Content>
           <Form style={{alignSelf:'center'}}>
             <Item floatingLabel>
@@ -68,7 +73,7 @@ constructor(props) {
               />
             </Item>
             <Button style={{width:'80%',alignSelf:'center', marginTop:40}} full rounded
-            onPress={()=> {this.props.navigation.navigate('LoginPage')}}>
+            onPress={()=> {this.fetch_register()}}>
             <Text style={{color:"white"}}>ثبت نام</Text>
             </Button>
           </Form>

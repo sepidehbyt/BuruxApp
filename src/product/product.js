@@ -57,7 +57,7 @@ state = {
           <Card>
             <CardItem>
               <Left>
-                <Thumbnail source={require('../../assets/product.jpg')} />
+                <Thumbnail source={{uri:"https://image.ibb.co/nR3zE9/product.jpg"}} />
               </Left>
               <Right>
                   <Text>خانواده حبابی</Text>
@@ -68,7 +68,247 @@ state = {
             <CardItem cardBody>
             <Left></Left>
             <Body>
-              <Image source={require('../../assets/product.png')} style={{width: 100, height: 200}}/>
+              <Image source={{uri:"https://image.ibb.co/bH46u9/product.png"}} style={{width: 100, height: 200}}/>
+            </Body>
+            <Right></Right>
+            </CardItem>
+            
+            <CardItem>
+                <Text note>
+                این لامپ را جايگزين لامپ‌هاي حبابي رشته‌اي وكم مصرف كرده ايم. با توجه به اهمیت انتقال حرارت، بدنه این لامپ ها از جنس آلومینیوم ساخته شده اند. لامپ‌های حبابی کلاسیک با سرپیچ‌های استاندارد E27 به راحتی با لامپ‌های قدیمی شما قابل تعویض‌اند.
+                </Text>
+            </CardItem>
+
+            <CardItem>
+              <Left></Left>
+              <Body>
+                <Button block
+                onPress={()=>{
+                    this.setState({productName: "حبابی 12 وات مهتابی"});
+                    this.showDialog();
+                    }}>
+                  <Icon active name="basket" />
+                  <Text>خرید</Text>
+                </Button>
+              </Body>
+              <Right></Right>
+            </CardItem>
+          </Card>
+          <Card>
+            <CardItem>
+              <Left>
+                <Thumbnail source={{uri:"https://image.ibb.co/nR3zE9/product.jpg"}} />
+              </Left>
+              <Right>
+                  <Text>خانواده حبابی</Text>
+                  <Text note>سری جنرال</Text>
+              </Right>
+            </CardItem>
+            
+            <CardItem cardBody>
+            <Left></Left>
+            <Body>
+              <Image source={{uri:"https://image.ibb.co/bH46u9/product.png"}} style={{width: 100, height: 200}}/>
+            </Body>
+            <Right></Right>
+            </CardItem>
+            
+            <CardItem>
+                <Text note>
+                این لامپ را جايگزين لامپ‌هاي حبابي رشته‌اي وكم مصرف كرده ايم. با توجه به اهمیت انتقال حرارت، بدنه این لامپ ها از جنس آلومینیوم ساخته شده اند. لامپ‌های حبابی کلاسیک با سرپیچ‌های استاندارد E27 به راحتی با لامپ‌های قدیمی شما قابل تعویض‌اند.
+                </Text>
+            </CardItem>
+
+            <CardItem>
+              <Left></Left>
+              <Body>
+                <Button block
+                onPress={()=>{
+                    this.setState({productName: "حبابی 12 وات مهتابی"});
+                    this.showDialog();
+                    }}>
+                  <Icon active name="basket" />
+                  <Text>خرید</Text>
+                </Button>
+              </Body>
+              <Right></Right>
+            </CardItem>
+          </Card>
+          <Card>
+            <CardItem>
+              <Left>
+                <Thumbnail source={{uri:"https://image.ibb.co/nR3zE9/product.jpg"}} />
+              </Left>
+              <Right>
+                  <Text>خانواده حبابی</Text>
+                  <Text note>سری جنرال</Text>
+              </Right>
+            </CardItem>
+            
+            <CardItem cardBody>
+            <Left></Left>
+            <Body>
+              <Image source={{uri:"https://image.ibb.co/bH46u9/product.png"}} style={{width: 100, height: 200}}/>
+            </Body>
+            <Right></Right>
+            </CardItem>
+            
+            <CardItem>
+                <Text note>
+                این لامپ را جايگزين لامپ‌هاي حبابي رشته‌اي وكم مصرف كرده ايم. با توجه به اهمیت انتقال حرارت، بدنه این لامپ ها از جنس آلومینیوم ساخته شده اند. لامپ‌های حبابی کلاسیک با سرپیچ‌های استاندارد E27 به راحتی با لامپ‌های قدیمی شما قابل تعویض‌اند.
+                </Text>
+            </CardItem>
+
+            <CardItem>
+              <Left></Left>
+              <Body>
+                <Button block
+                onPress={()=>{
+                    this.setState({productName: "حبابی 12 وات مهتابی"});
+                    this.showDialog();
+                    }}>
+                  <Icon active name="basket" />
+                  <Text>خرید</Text>
+                </Button>
+              </Body>
+              <Right></Right>
+            </CardItem>
+          </Card>
+          <Card>
+            <CardItem>
+              <Left>
+                <Thumbnail source={{uri:"https://image.ibb.co/nR3zE9/product.jpg"}} />
+              </Left>
+              <Right>
+                  <Text>خانواده حبابی</Text>
+                  <Text note>سری جنرال</Text>
+              </Right>
+            </CardItem>
+            
+            <CardItem cardBody>
+            <Left></Left>
+            <Body>
+              <Image source={{uri:"https://image.ibb.co/bH46u9/product.png"}} style={{width: 100, height: 200}}/>
+            </Body>
+            <Right></Right>
+            </CardItem>
+            
+            <CardItem>
+                <Text note>
+                این لامپ را جايگزين لامپ‌هاي حبابي رشته‌اي وكم مصرف كرده ايم. با توجه به اهمیت انتقال حرارت، بدنه این لامپ ها از جنس آلومینیوم ساخته شده اند. لامپ‌های حبابی کلاسیک با سرپیچ‌های استاندارد E27 به راحتی با لامپ‌های قدیمی شما قابل تعویض‌اند.
+                </Text>
+            </CardItem>
+
+            <CardItem>
+              <Left></Left>
+              <Body>
+                <Button block
+                onPress={()=>{
+                    this.setState({productName: "حبابی 12 وات مهتابی"});
+                    this.showDialog();
+                    }}>
+                  <Icon active name="basket" />
+                  <Text>خرید</Text>
+                </Button>
+              </Body>
+              <Right></Right>
+            </CardItem>
+          </Card>
+          <Card>
+            <CardItem>
+              <Left>
+                <Thumbnail source={{uri:"https://image.ibb.co/nR3zE9/product.jpg"}} />
+              </Left>
+              <Right>
+                  <Text>خانواده حبابی</Text>
+                  <Text note>سری جنرال</Text>
+              </Right>
+            </CardItem>
+            
+            <CardItem cardBody>
+            <Left></Left>
+            <Body>
+              <Image source={{uri:"https://image.ibb.co/bH46u9/product.png"}} style={{width: 100, height: 200}}/>
+            </Body>
+            <Right></Right>
+            </CardItem>
+            
+            <CardItem>
+                <Text note>
+                این لامپ را جايگزين لامپ‌هاي حبابي رشته‌اي وكم مصرف كرده ايم. با توجه به اهمیت انتقال حرارت، بدنه این لامپ ها از جنس آلومینیوم ساخته شده اند. لامپ‌های حبابی کلاسیک با سرپیچ‌های استاندارد E27 به راحتی با لامپ‌های قدیمی شما قابل تعویض‌اند.
+                </Text>
+            </CardItem>
+
+            <CardItem>
+              <Left></Left>
+              <Body>
+                <Button block
+                onPress={()=>{
+                    this.setState({productName: "حبابی 12 وات مهتابی"});
+                    this.showDialog();
+                    }}>
+                  <Icon active name="basket" />
+                  <Text>خرید</Text>
+                </Button>
+              </Body>
+              <Right></Right>
+            </CardItem>
+          </Card>
+          <Card>
+            <CardItem>
+              <Left>
+                <Thumbnail source={{uri:"https://image.ibb.co/nR3zE9/product.jpg"}} />
+              </Left>
+              <Right>
+                  <Text>خانواده حبابی</Text>
+                  <Text note>سری جنرال</Text>
+              </Right>
+            </CardItem>
+            
+            <CardItem cardBody>
+            <Left></Left>
+            <Body>
+              <Image source={{uri:"https://image.ibb.co/bH46u9/product.png"}} style={{width: 100, height: 200}}/>
+            </Body>
+            <Right></Right>
+            </CardItem>
+            
+            <CardItem>
+                <Text note>
+                این لامپ را جايگزين لامپ‌هاي حبابي رشته‌اي وكم مصرف كرده ايم. با توجه به اهمیت انتقال حرارت، بدنه این لامپ ها از جنس آلومینیوم ساخته شده اند. لامپ‌های حبابی کلاسیک با سرپیچ‌های استاندارد E27 به راحتی با لامپ‌های قدیمی شما قابل تعویض‌اند.
+                </Text>
+            </CardItem>
+
+            <CardItem>
+              <Left></Left>
+              <Body>
+                <Button block
+                onPress={()=>{
+                    this.setState({productName: "حبابی 12 وات مهتابی"});
+                    this.showDialog();
+                    }}>
+                  <Icon active name="basket" />
+                  <Text>خرید</Text>
+                </Button>
+              </Body>
+              <Right></Right>
+            </CardItem>
+          </Card>
+          <Card>
+            <CardItem>
+              <Left>
+                <Thumbnail source={{uri:"https://image.ibb.co/nR3zE9/product.jpg"}} />
+              </Left>
+              <Right>
+                  <Text>خانواده حبابی</Text>
+                  <Text note>سری جنرال</Text>
+              </Right>
+            </CardItem>
+            
+            <CardItem cardBody>
+            <Left></Left>
+            <Body>
+              <Image source={{uri:"https://image.ibb.co/bH46u9/product.png"}} style={{width: 100, height: 200}}/>
             </Body>
             <Right></Right>
             </CardItem>
