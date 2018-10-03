@@ -8,7 +8,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-import {Icon, Button, Container, Header, Left, Body, Segment, Right, Accordion, View, Text, Content } from 'native-base';
+import {Icon, Button, Container, Header, Left, Body, Segment,Badge, Right, Accordion, View, Text, Content } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
@@ -93,8 +93,8 @@ class productLists extends Component {
     <Container>
         <Header hasSegment>
         <Left>
-          <Button transparent>
-            <Icon name="arrow-back"/>
+          <Button transparent onPress={()=>{this.props.navigation.openDrawer();}}>
+            <Icon name="menu"/>
           </Button>
         </Left>
         <Body>
@@ -125,9 +125,11 @@ class productLists extends Component {
                 }}><Icon name={this.state.bulb}/></Button>
         </Body>
         <Right>
-          <Button transparent>
-            <Icon name="search" />
-          </Button>
+        <Button bordered badge vertical style={{marginTop:-8}}
+        onPress={()=>{this.props.navigation.navigate('basket')}}>
+              <Badge success style={{top:8}}><Text>2</Text></Badge>
+              <Icon name="ios-basket" style={{color:"white"}} />
+            </Button>
         </Right>
       </Header>
 

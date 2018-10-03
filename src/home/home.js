@@ -10,18 +10,21 @@ import pdfPage from '../photon/pdf.js';
 import NewsPage from '../news/news.js';
 import ProductSeries from '../Products/productSeries.js';
 import productList from '../Products/productLists.js';
+import basket from '../Basket/basket.js';
+import starter from '../login/starter.js';
 
 const home = DrawerNavigator(
   {
-    ProductSeries: { screen: ProductSeries},
+    starter: { screen: starter},
     LoginPage: { screen: LoginPage},
+    basket: { screen: basket},
     productList: { screen: productList},
+    ProductSeries: { screen: ProductSeries},
     MainPage: { screen: MainPage},
     RegisterPage: { screen: RegisterPage},
     NewsPage: { screen: NewsPage},
     photonPage: { screen: photonPage},
     pdfPage: { screen: pdfPage},
-    LoginPage: { screen: LoginPage},
     WarrantyPage: { screen: WarrantyPage},
     ProductPage : { screen: ProductPage}
   }

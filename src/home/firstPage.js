@@ -11,7 +11,7 @@ class firstPage extends Component {
         
         <Header>
         <Left>
-            <Button transparent>
+            <Button transparent onPress={()=>{this.props.navigation.openDrawer();}}>
               <Icon name='menu' />
             </Button>
         </Left>
