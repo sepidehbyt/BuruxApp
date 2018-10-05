@@ -50,35 +50,35 @@ class productLists extends Component {
             <Text
             style={{ backgroundColor: "#e3f1f1", padding: 10 }}
             >
-            100w
+            اشکی
             </Text>
         </TouchableHighlight>
         <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries")}}>
             <Text
             style={{ backgroundColor: "#e3f1f1", padding: 10 }}
             >
-            200w
+            حبابی
             </Text>
         </TouchableHighlight>
         <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries")}}>
             <Text
             style={{ backgroundColor: "#e3f1f1", padding: 10 }}
             >
-            300w
+            جنرال
             </Text>
         </TouchableHighlight>
         <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries")}}>
             <Text
                 style={{ backgroundColor: "#e3f1f1", padding: 10 }}
             >
-                400w
+                جاینت
             </Text>
         </TouchableHighlight>
         <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries")}}>
             <Text
             style={{ backgroundColor: "#e3f1f1", padding: 10 }}
             >
-            500w
+            یوفو
             </Text>
         </TouchableHighlight>
     </View>
