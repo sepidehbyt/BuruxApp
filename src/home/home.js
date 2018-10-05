@@ -12,6 +12,7 @@ import ProductSeries from '../Products/productSeries.js';
 import productList from '../Products/productLists.js';
 import basket from '../Basket/basket.js';
 import starter from '../login/starter.js';
+import SideBar from '../sidebar/sidebar.js';
 
 const home = DrawerNavigator(
   {
@@ -28,5 +29,13 @@ const home = DrawerNavigator(
     WarrantyPage: { screen: WarrantyPage},
     ProductPage : { screen: ProductPage}
   }
+  ,
+  {
+    contentComponent: props => <SideBar {...props} />,
+    drawerPosition : 'left',
+    drawerWidth: 250,
+    drawerLockMode : 'locked-closed'
+  }
+  
 );
 export default home;

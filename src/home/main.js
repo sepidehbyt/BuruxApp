@@ -5,13 +5,14 @@ import { TabNavigator } from "react-navigation";
 import register from '../register/register';
 import firstPage from './firstPage';
 import LoginPage from '../login/login';
-import ProductList from '../Products/productLists.js'
+import ProductList from '../Products/productLists.js';
+import basket from '../Basket/basket.js';
 
 export default (main = TabNavigator(
     {
       FirstPage: { screen: firstPage },
       JadeChat: { screen: ProductList },
-      NineChat: { screen: LoginPage }
+      NineChat: { screen: basket }
     },
     {
       tabBarPosition: "bottom",
