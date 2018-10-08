@@ -12,78 +12,121 @@ import {Icon, Button, Container, Header, Left, Body, Segment,Badge, Right, Accor
 import { withNavigation } from 'react-navigation';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
-const dataArray_lamp = [
-    { title: "خانواده حبابی", content: "salaaaam" },
-    { title: "خانواده دکوراتیو", content: "Lorem ipsum dolor sit amet" },
-    { title: "خانواده شمعی", content: "Lorem ipsum dolor sit amet" },
-    { title: "خانواده تیوب", content: "Lorem ipsum dolor sit amet" },
-    { title: "خانواده رفلکتور", content: "Lorem ipsum dolor sit amet" }
-  ];
-
-  const dataArray_light = [
-    { title: "خانواده لاینر", content: "Lorem ipsum dolor sit amet" },
-    { title: "خانواده پنل", content: "Lorem ipsum dolor sit amet" },
-    { title: "خانواده پروژکتور", content: "Lorem ipsum dolor sit amet" }
-  ];
+var API_URL = require('../config/config.js');
 
 class productLists extends Component {
   constructor(props) {
     super(props);
     this.state =  {
         height:0,
-        bulb:"ios-bulb",
+        bulb:"ios-bulb-outline",
         type: "چراغ های",
-        dataArray: dataArray_lamp,
+        dataArray: global.dataArray_light,
         dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
-      }).cloneWithRows([
+        }).cloneWithRows([
         'Simplicity Matters'
-      ])
+        ]),
+        dataSourceProduct: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+        }).cloneWithRows([
+          'Simplicity Matters'
+        ])
     };
+    global.products_light = [];
+    global.products_lamp = [];
+    global.dataArray_lamp = [];
+    global.dataArray_light = [];
   }
 
+componentWillMount() {
+  this.fetch_productList();
+}
+
+  fetch_productList () {
+    fetch(API_URL + '/auth/getProductFamilies' , {
+      method: 'GET',
+      headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImU3Yzc4YTM5Y2Q0NTRlNDIyY2ZjNGUyODM2YWVlZDkxZjVkY2M1Njk1ZGQ3MTJiOGExZTI4MjM4NmI5YWJlZmY2OTBmY2IzNWIzZWE1M2MxIn0.eyJhdWQiOiIxIiwianRpIjoiZTdjNzhhMzljZDQ1NGU0MjJjZmM0ZTI4MzZhZWVkOTFmNWRjYzU2OTVkZDcxMmI4YTFlMjgyMzg2YjlhYmVmZjY5MGZjYjM1YjNlYTUzYzEiLCJpYXQiOjE1Mzg5MDA0ODMsIm5iZiI6MTUzODkwMDQ4MywiZXhwIjoxNTcwNDM2NDgzLCJzdWIiOiIyNCIsInNjb3BlcyI6W119.C7ScRJtLu8pvB8E33BkZCq1rzVljLs9kbki9xeqMRzrXisjjkBYIVsrM-q8Cw1hPWCiv4w6rPOhmlHqB0SIucH3Z3rEL_KB_pWB5ddJY5N0jV-X3UCGz2X_Ai8Zi9E9Q0GqYOLS-zTHctztN4E4X2mHsRA5xAgvujECGbInWQd8rDciTm91xncTrcImI_zROTmDGflQXCn3a3Wr7OvnXqy4pYy7ubr0bZ4tRl4ysqCS31A7mdMG2yWrETgdNMdmDvfpDjzYDOTa73NKb8dCFNKE7Cy_WZI3IoX0cDopdKskYXh-J1zbgbhxoclTYfmcoQKDv9kKKAkXHCqVA9z-ABocToa905A-1Iaa2ZmtW_UemUNPwx8FAgPeB1b56LcLBg9Y0xmJvEOhmaZTb-bMQYxQ_5HeQkBJ0g7Sna_FIF_7U7pmRGcEpcxBOdz8hNrBoI46Mr_55jTRHncG1BtHllaQU5ilPQnwEO6s1hLJDQuYKZw_jqSJdnqqWMO5twBk3rjZ_w7hLnyyBrv9m0KUcgH0eQZ0w7DAARGP1V3oVl9paeBog0wZvgfuX_fDhnRlJ6eEX_6WmLWaFml06v31hHeIdXvYyDMnF1QIv7QA5LaWqq-Aa8sb2ZLw7QFV1IGgAa92c_2_6CVdcAwopoOHClcP2S78cCDu3SNVNHjcozEg',
+      },
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      variable = responseJson + '';
+      if(variable != 'undefined'){
+        var countType = Object.keys(responseJson.message).length;
+        for(let i = 0; i < countType; i++) {
+          var countTitle = Object.keys(responseJson.message[i].families).length;
+          for(let j = 0; j <countTitle; j++) {
+            if(responseJson.message[i].type == 'چراغ') {
+              global.dataArray_light.push({
+                title: responseJson.message[i].families[j].title,
+                content: responseJson.message[i].families[j].content
+              });
+              global.products_light[j] = responseJson.message[i].families[j].products; 
+            }
+            else {
+              global.dataArray_lamp.push({
+                title: responseJson.message[i].families[j].title,
+                content: responseJson.message[i].families[j].content
+              });
+              global.products_light[j] = responseJson.message[i].families[j].products; 
+            }
+          }
+        }
+        this.setState({
+          dataArray : global.dataArray_lamp
+        });     
+      }
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+  }
+
+
+
   _renderContent = (content) => {
+
+    myproducts = [];
+
+    if(this.state.bulb=="ios-bulb" && content.content +1 <= global.products_lamp.length){
+      myproducts = global.products_lamp[content.content];
+    }else if(this.state.bulb=="ios-bulb-outline" && content.content +1 <= global.products_light.length){
+      myproducts = global.products_light[content.content];
+      }
+
+      // alert(myproducts + JSON.stringify(global.products_lamp) + this.state.bulb);
+
     return (
 
-    <View>
-        <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries")}}>
-            <Text
-            style={{ backgroundColor: "#e3f1f1", padding: 10 }}
-            >
-            اشکی
-            </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries")}}>
-            <Text
-            style={{ backgroundColor: "#e3f1f1", padding: 10 }}
-            >
-            حبابی
-            </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries")}}>
-            <Text
-            style={{ backgroundColor: "#e3f1f1", padding: 10 }}
-            >
-            جنرال
-            </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries")}}>
-            <Text
-                style={{ backgroundColor: "#e3f1f1", padding: 10 }}
-            >
-                جاینت
-            </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries")}}>
-            <Text
-            style={{ backgroundColor: "#e3f1f1", padding: 10 }}
-            >
-            یوفو
-            </Text>
-        </TouchableHighlight>
-    </View>
+    <ListView
+        ref="ListView"
+        style={styles.container}
+        
+        dataSource ={ new ListView.DataSource({
+          rowHasChanged: (r1, r2) => r1 !== r2
+          }).cloneWithRows(myproducts)
+        }
+        
+        renderRow={(rowData) => (
+          <View>
 
-);
+          <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries")}}>
+            <Text
+            style={{ backgroundColor: "#e3f1f1", padding: 10 }}
+            >
+            {
+              rowData
+            }
+            </Text>
+          </TouchableHighlight>
+        
+          </View>
+         )}
+    />
+    );
   }
   
   render() {
@@ -103,23 +146,25 @@ class productLists extends Component {
                     this.setState({
                         bulb:"ios-bulb-outline",
                         type: "لامپ های",
-                        dataArray:dataArray_light,
-                        dataSource : new ListView.DataSource({
-                            rowHasChanged: (r1, r2) => r1 !== r2
-                          }).cloneWithRows([
-                            'eli'
-                          ])
-                    });
-                }else if(this.state.bulb="ios-bulb-outline"){
-                    this.setState({
-                        bulb:"ios-bulb",
-                        type: "چراغ های",
                         dataArray:dataArray_lamp,
                         dataSource : new ListView.DataSource({
                             rowHasChanged: (r1, r2) => r1 !== r2
                           }).cloneWithRows([
+                            'eli'
+                          ]),
+                        dataSourceProduct :global.products_lamp
+                    });
+                }else if(this.state.bulb=="ios-bulb-outline"){
+                    this.setState({
+                        bulb:"ios-bulb",
+                        type: "چراغ های",
+                        dataArray:dataArray_light,
+                        dataSource : new ListView.DataSource({
+                            rowHasChanged: (r1, r2) => r1 !== r2
+                          }).cloneWithRows([
                             'sela'
-                          ])
+                          ]),
+                        dataSourceProduct :global.products_light
                     });
                 }
                 }}><Icon name={this.state.bulb}/></Button>

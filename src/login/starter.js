@@ -14,6 +14,10 @@ constructor(props) {
         verCode: ''
       };
     }
+
+  componentDidMount(){
+    console.disableYellowBox = true;
+  }
   
   render() {
     return (

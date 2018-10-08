@@ -16,10 +16,10 @@ import SideBar from '../sidebar/sidebar.js';
 
 const home = DrawerNavigator(
   {
+    productList: { screen: productList},
     starter: { screen: starter},
     LoginPage: { screen: LoginPage},
     basket: { screen: basket},
-    productList: { screen: productList},
     ProductSeries: { screen: ProductSeries},
     MainPage: { screen: MainPage},
     RegisterPage: { screen: RegisterPage},
