@@ -13,21 +13,23 @@ import productList from '../Products/productLists.js';
 import basket from '../Basket/basket.js';
 import starter from '../login/starter.js';
 import SideBar from '../sidebar/sidebar.js';
+import orders from '../orders/orders.js'
 
 const home = DrawerNavigator(
   {
+    orders: { screen: orders},
     productList: { screen: productList},
+    ProductPage : { screen: ProductPage},
+    ProductSeries: { screen: ProductSeries},
+    NewsPage: { screen: NewsPage},
     starter: { screen: starter},
     LoginPage: { screen: LoginPage},
     basket: { screen: basket},
-    ProductSeries: { screen: ProductSeries},
     MainPage: { screen: MainPage},
     RegisterPage: { screen: RegisterPage},
-    NewsPage: { screen: NewsPage},
     photonPage: { screen: photonPage},
     pdfPage: { screen: pdfPage},
-    WarrantyPage: { screen: WarrantyPage},
-    ProductPage : { screen: ProductPage}
+    WarrantyPage: { screen: WarrantyPage}
   }
   ,
   {

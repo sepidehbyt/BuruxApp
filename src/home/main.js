@@ -6,13 +6,13 @@ import register from '../register/register';
 import firstPage from './firstPage';
 import LoginPage from '../login/login';
 import ProductList from '../Products/productLists.js';
-import basket from '../Basket/basket.js';
+import orders from '../orders/orders.js';
 
 export default (main = TabNavigator(
     {
       FirstPage: { screen: firstPage },
       JadeChat: { screen: ProductList },
-      NineChat: { screen: basket }
+      NineChat: { screen: orders }
     },
     {
       tabBarPosition: "bottom",

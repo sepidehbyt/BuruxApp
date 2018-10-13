@@ -27,6 +27,7 @@
     "react-native": "^0.55.3",
     "react-native-button": "^2.3.0",
     "react-native-dialog": "^5.1.0",
+    "react-native-elements": "^1.0.0-beta6",
     "react-native-firebase": "^4.3.6",
     "react-native-modalbox": "^1.6.0",
     "react-native-parallax-scroll-view": "^0.21.3",

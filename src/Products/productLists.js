@@ -3,7 +3,6 @@ import {
   Dimensions,
   Image,
   ListView,
-  PixelRatio,
   StyleSheet,
   TouchableHighlight,
 } from 'react-native';
@@ -35,8 +34,12 @@ class productLists extends Component {
     };
     global.products_light = [];
     global.products_lamp = [];
+    global.products_lampid = [];
+    global.products_lightid = [];
     global.dataArray_lamp = [];
     global.dataArray_light = [];
+    global.dataArray_lampIMG = [];
+    global.dataArray_lightIMG = [];
   }
 
 componentWillMount() {
@@ -49,7 +52,7 @@ componentWillMount() {
       headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImU3Yzc4YTM5Y2Q0NTRlNDIyY2ZjNGUyODM2YWVlZDkxZjVkY2M1Njk1ZGQ3MTJiOGExZTI4MjM4NmI5YWJlZmY2OTBmY2IzNWIzZWE1M2MxIn0.eyJhdWQiOiIxIiwianRpIjoiZTdjNzhhMzljZDQ1NGU0MjJjZmM0ZTI4MzZhZWVkOTFmNWRjYzU2OTVkZDcxMmI4YTFlMjgyMzg2YjlhYmVmZjY5MGZjYjM1YjNlYTUzYzEiLCJpYXQiOjE1Mzg5MDA0ODMsIm5iZiI6MTUzODkwMDQ4MywiZXhwIjoxNTcwNDM2NDgzLCJzdWIiOiIyNCIsInNjb3BlcyI6W119.C7ScRJtLu8pvB8E33BkZCq1rzVljLs9kbki9xeqMRzrXisjjkBYIVsrM-q8Cw1hPWCiv4w6rPOhmlHqB0SIucH3Z3rEL_KB_pWB5ddJY5N0jV-X3UCGz2X_Ai8Zi9E9Q0GqYOLS-zTHctztN4E4X2mHsRA5xAgvujECGbInWQd8rDciTm91xncTrcImI_zROTmDGflQXCn3a3Wr7OvnXqy4pYy7ubr0bZ4tRl4ysqCS31A7mdMG2yWrETgdNMdmDvfpDjzYDOTa73NKb8dCFNKE7Cy_WZI3IoX0cDopdKskYXh-J1zbgbhxoclTYfmcoQKDv9kKKAkXHCqVA9z-ABocToa905A-1Iaa2ZmtW_UemUNPwx8FAgPeB1b56LcLBg9Y0xmJvEOhmaZTb-bMQYxQ_5HeQkBJ0g7Sna_FIF_7U7pmRGcEpcxBOdz8hNrBoI46Mr_55jTRHncG1BtHllaQU5ilPQnwEO6s1hLJDQuYKZw_jqSJdnqqWMO5twBk3rjZ_w7hLnyyBrv9m0KUcgH0eQZ0w7DAARGP1V3oVl9paeBog0wZvgfuX_fDhnRlJ6eEX_6WmLWaFml06v31hHeIdXvYyDMnF1QIv7QA5LaWqq-Aa8sb2ZLw7QFV1IGgAa92c_2_6CVdcAwopoOHClcP2S78cCDu3SNVNHjcozEg',
+      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImUzYTBiYjU0ZWVmMGFkNTBiYWUwY2U2Mjc1MjA5YTM1ZjM4MDkzMGViOTlkMTZhOWQxMDFkMjUxY2MwMTA3MzI4ZDg4ZjE0NmM3YzQyYTliIn0.eyJhdWQiOiIxIiwianRpIjoiZTNhMGJiNTRlZWYwYWQ1MGJhZTBjZTYyNzUyMDlhMzVmMzgwOTMwZWI5OWQxNmE5ZDEwMWQyNTFjYzAxMDczMjhkODhmMTQ2YzdjNDJhOWIiLCJpYXQiOjE1MzkyNDA0NDQsIm5iZiI6MTUzOTI0MDQ0NCwiZXhwIjoxNTcwNzc2NDQ0LCJzdWIiOiIyNCIsInNjb3BlcyI6W119.VT1TbNRKxkoi5I5wyAOTgurB-KOxBPUlbfA4GdLQmXk2cHQqZiA1ZNaKSPeGsXRKVuqJbHnAE4zU0eMj67_89Rdf69mT7reDdhZHHjzaP7f2SPl6oKdLwr2eZLp-bdBaHz7fIS6X2XTR8a8lJIvqbfOqqdL3VgsIG1aN-xGvLjZKfvPWQe9BsPcniDM16xFTqgmcHoQb204lj9G9HOYrbkgJT76WL08h06tuang93uJe8zUoG6k9jsGccNbgZhM9khcl8tT7eE9rf7Bx9O7msPOoiA5KvE0ezlXdGHPt_Osau9RMCxoE0q-r0JadnAKFJQpdOhHMmklG9U-DF3eHjSo79KTu4AbTxtXUqFBCSBSiM2E8pXS6-qb5DZx97MK3Y-t7fzOuocbh-ECVqc90krEB8m4DKmWqb8pQmJmP21rUaycvAK6s3Ed1tV7rygNCGpxRFnccMcva5XweUy88QUCP3fq3683EvZ2uLYawvng9AAfNsc-QNXq4WonjpIJSV4bmyu5jU4StLiQMePhUi69eBK81x0BYgGn1t4c30CWKyfEEkpVIb-oxinsAhOTqmu7xZtUB5iEbkOzY-OdrPTMPHOTPEtlUo1pnMrZGJjJv-pxX6xID4L7z5N2IoPjMX5yHU2RZRxbVi5xeuxt70iUVXqwuA8dDrXiHp0GJbF8',
       },
     }).then((response) => response.json())
     .then((responseJson) => {
@@ -64,14 +67,18 @@ componentWillMount() {
                 title: responseJson.message[i].families[j].title,
                 content: responseJson.message[i].families[j].content
               });
-              global.products_light[j] = responseJson.message[i].families[j].products; 
+              global.products_light[j] = responseJson.message[i].families[j].products;
+              global.products_lightid[j] = responseJson.message[i].families[j].id; 
+              global.dataArray_lightIMG[j] = responseJson.message[i].families[j].imageURL;
             }
             else {
               global.dataArray_lamp.push({
                 title: responseJson.message[i].families[j].title,
                 content: responseJson.message[i].families[j].content
               });
-              global.products_light[j] = responseJson.message[i].families[j].products; 
+              global.products_lamp[j] = responseJson.message[i].families[j].products;
+              global.products_lampid[j] = responseJson.message[i].families[j].id;
+              global.dataArray_lampIMG[j] = responseJson.message[i].families[j].imageURL;
             }
           }
         }
@@ -90,11 +97,17 @@ componentWillMount() {
   _renderContent = (content) => {
 
     myproducts = [];
+    myproductsid = 0;
+    myproductIMG = 0;
 
     if(this.state.bulb=="ios-bulb" && content.content +1 <= global.products_lamp.length){
-      myproducts = global.products_lamp[content.content];
-    }else if(this.state.bulb=="ios-bulb-outline" && content.content +1 <= global.products_light.length){
       myproducts = global.products_light[content.content];
+      myproductsid = global.products_lightid[content.content];
+      myproductIMG = global.dataArray_lightIMG[content.content];
+    }else if(this.state.bulb=="ios-bulb-outline" && content.content +1 <= global.products_light.length){
+      myproducts = global.products_lamp[content.content];
+      myproductsid = global.products_lampid[content.content];
+      myproductIMG = global.dataArray_lampIMG[content.content];
       }
 
       // alert(myproducts + JSON.stringify(global.products_lamp) + this.state.bulb);
@@ -113,7 +126,7 @@ componentWillMount() {
         renderRow={(rowData) => (
           <View>
 
-          <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries")}}>
+          <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries",{name : rowData,id : myproductsid,family : content.title, imageURL : myproductIMG})}}>
             <Text
             style={{ backgroundColor: "#e3f1f1", padding: 10 }}
             >
@@ -170,9 +183,9 @@ componentWillMount() {
                 }}><Icon name={this.state.bulb}/></Button>
         </Body>
         <Right>
-        <Button bordered badge vertical style={{marginTop:-8}}
+        <Button bordered badge vertical style={{marginTop:0}} //-8
         onPress={()=>{this.props.navigation.navigate('basket')}}>
-              <Badge success style={{top:8}}><Text>2</Text></Badge>
+              {/* <Badge success style={{top:8}}><Text>2</Text></Badge> */}
               <Icon name="ios-basket" style={{color:"white"}} />
             </Button>
         </Right>
