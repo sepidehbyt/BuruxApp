@@ -5,7 +5,6 @@ import {Text, Image, FlatList, TouchableHighlight, StyleSheet} from 'react-nativ
 
 var API_URL = require('../config/config.js');
 
-
     const styles = StyleSheet.create({
     containerStyle: {
         backgroundColor: '#3f51b5',
@@ -97,7 +96,7 @@ class catalogue extends Component {
     <Header>
     <Left>
         <Button transparent
-            onPress={()=>{this.props.navigation.navigate('MainPage')}}
+            onPress={()=>{this.props.navigation.navigate('firstPage')}}
         >
         <Icon name='arrow-back'/>
         </Button>

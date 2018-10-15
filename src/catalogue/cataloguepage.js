@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Form, Button } from 'native-base';
 import {Text, Image} from 'react-native';
 
+var API_URL = require('../config/config.js');
+
 class cataloguepage extends Component {
 constructor(props) {
       super(props);
       this.state = {
-        isOpen: false,
-        isDisabled: false,
-        swipeToClose: true,
-        sliderValue: 0.3,
-        mobileNumber: '', 
-        verCode: ''
+        response : [],
+        pageNumber : 1
+
       };
     }
 
     fetch_cataloguepages() {
-      fetch(API_URL + '/auth/getCataloguePage?pagenumber=' + 3 + '&catalogue_id='  
+      fetch(API_URL + '/auth/getCataloguePage?pagenumber=' + this.state.pageNumber + '&catalogue_id=' + this.props.navigation.getParam('catalogue_id')
       , {
         method: 'POST',
         headers: {
@@ -28,12 +27,8 @@ constructor(props) {
       .then((responseJson) => {
         variable = responseJson + '';
         if(variable != 'undefined'){
-          var countType = Object.keys(responseJson).length;
-          for(let i = 0 ; i < countType ; i++){
-            global.renderer[i] = i;
-          }
-          this.setState({response : responseJson,renderer : global.renderer,description:responseJson[0].description,cataloguename:responseJson[0].name});
-          //alert(responseJson[0].name);
+          //alert(JSON.stringify(responseJson));
+          this.setState({response : responseJson})
         }
         this.forceUpdate();
       })
@@ -42,9 +37,12 @@ constructor(props) {
       });
     }
 
-  componentDidMount(){
-    alert(this.props.navigation.getParam('catalogue_id'));
-    console.disableYellowBox = true;
+  componentWillMount(){
+    this.fetch_cataloguepages();
+    if(this.state.response != undefined) {
+      alert(JSON.stringify(this.state.response));        
+    }
+
   }
   
   render() {
@@ -52,7 +50,7 @@ constructor(props) {
       <Container>
         <Header />
         
-        <Image source={{uri:"https://image.ibb.co/e1pWu9/back.jpg"}} style={{position:"absolute", width:"100%", height:"100%"}} />
+        {/* <Image source={{uri:this.state.response[0].imageURL}} style={{position:"absolute", width:"100%", height:"100%"}} /> */}
 
       </Container>
     );
