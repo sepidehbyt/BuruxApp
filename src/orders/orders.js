@@ -12,11 +12,16 @@ class orders extends Component {
       dialogVisible: false,
       productName : "",
       count : 1,
+      selected : 0,
       response : [],
-      renderer: []
+      renderer: [],
+      products:[],
+      productRenderer:[]
     };
     global.renderer = [];
     global.text = [];
+    global.myproducts = [];
+    global.productRenderer= [];
   }
 
 
@@ -58,9 +63,19 @@ class orders extends Component {
         this.fetch_orders();
       }
 
-      showmore(rowData){
-
+      getproductrenderer(rowData){
+        if(this.state.response[rowData] != undefined) {
+          var countType = Object.keys(this.state.response[rowData].products).length;
+          for (let i = 0 ; i < countType ; i ++) {
+            productRenderer[i] = i;
+          }
+            // console.warn(countType + ' ' + rowData);
+            return(productRenderer);
+        }else{
+          return [];
+        }
       }
+      
 
     render() {
     return (
@@ -89,14 +104,17 @@ class orders extends Component {
                 
                 renderRow={(rowData) => (
                   <Card>
-                    <CardItem style={{flex:1}}>
+                    <CardItem>
                     <Left style={{flex:0.2,marginTop:-50}}>
                       <Thumbnail style={{width:25,height:25}} source={{uri:this.state.response[rowData].imageURL+""}} />
                       <Text note>{this.state.response[rowData].time}</Text>
                     </Left>
                     <Right style={{flex:0.8,marginTop: 30,}}>
-                        <Text> وضعیت سفارش شما :  {this.state.response[rowData].status}</Text>
-                        <Text>یادداشت های سفارش شما :</Text>
+                    <View style={{flexDirection:'row'}}>
+                    <Text note>  {this.state.response[rowData].status}</Text>
+                        <Text> وضعیت سفارش شما:</Text>
+                    </View>
+                        <Text>یادداشت های سفارش شما:</Text>
                         <Text note>  {this.state.response[rowData].notes}</Text>
                         {/* <View style={{flexDirection: 'row',}}>
                           <Text>تعداد : {this.state.response[rowData].count}</Text>
@@ -105,14 +123,21 @@ class orders extends Component {
                         <Text>{this.state.response[rowData].watt} وات</Text> */}
                     </Right>
                   </CardItem>
-                  <CardItem>
-                  <Button transparent
-                    onPress={()=>{
-                        this.showmore(rowData);
-                        }}>
-                    <Text style={{width:'100%',alignContent: 'center',alignItems: 'center',alignSelf: 'center',textAlign:'center'}}>مشاهده محصولات</Text>
-                    </Button>
-                  </CardItem>
+
+                  <ListView style={{marginBottom: 10,}}
+                    dataSource ={ new ListView.DataSource({
+                      rowHasChanged: (r1, r2) => r1 !== r2
+                      }).cloneWithRows(this.getproductrenderer(rowData))
+                    }
+                    
+                    renderRow={(rowData2) => (
+                        <CardItem style={{marginVertical:-7}}>
+                        <Body style={{flex:1}}>
+                            <Text note style={{direction: 'rtl',alignSelf:'flex-end', fontSize:12}}>{this.state.response[rowData].products[rowData2].count} عدد {this.state.response[rowData].products[rowData2].name} {this.state.response[rowData].products[rowData2].family} {this.state.response[rowData].products[rowData2].watt} وات {this.state.response[rowData].products[rowData2].color}</Text>
+                        </Body>
+                      </CardItem>
+                    )}
+                />
               </Card>
                 )}
             />

@@ -17,17 +17,17 @@ import orders from '../orders/orders.js'
 
 const home = DrawerNavigator(
   {
+    photonPage: { screen: photonPage},
+    starter: { screen: starter},
+    RegisterPage: { screen: RegisterPage},
     orders: { screen: orders},
     productList: { screen: productList},
     ProductPage : { screen: ProductPage},
     ProductSeries: { screen: ProductSeries},
     NewsPage: { screen: NewsPage},
-    starter: { screen: starter},
     LoginPage: { screen: LoginPage},
     basket: { screen: basket},
     MainPage: { screen: MainPage},
-    RegisterPage: { screen: RegisterPage},
-    photonPage: { screen: photonPage},
     pdfPage: { screen: pdfPage},
     WarrantyPage: { screen: WarrantyPage}
   }

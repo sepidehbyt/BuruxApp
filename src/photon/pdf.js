@@ -22,7 +22,7 @@ class pdf extends React.Component {
     </Right>
     </Header>
     
-    <WebView source={{uri: 'http://docs.google.com/gview?embedded=true&url=http://www.burux.com/download/photon-9705.pdf'}}>
+    <WebView source={{uri: this.props.navigation.getParam('pdfURL')}}>
     </WebView>
 
     </Container>
