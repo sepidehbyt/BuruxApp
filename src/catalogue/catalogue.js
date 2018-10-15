@@ -96,7 +96,7 @@ class catalogue extends Component {
     <Header>
     <Left>
         <Button transparent
-            onPress={()=>{this.props.navigation.navigate('firstPage')}}
+            onPress={()=>{this.props.navigation.navigate('MainPage')}}
         >
         <Icon name='arrow-back'/>
         </Button>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Button } from 'native-base';
+import { Container, Header, Content, Form, Button, Item, Input } from 'native-base';
 import {Text, Image} from 'react-native';
 
 var API_URL = require('../config/config.js');
@@ -10,7 +10,6 @@ constructor(props) {
       this.state = {
         response : [],
         pageNumber : 1
-
       };
     }
 
@@ -48,10 +47,31 @@ constructor(props) {
   render() {
     return (
       <Container>
-        <Header />
         
-        {/* <Image source={{uri:this.state.response[0].imageURL}} style={{position:"absolute", width:"100%", height:"100%"}} /> */}
+        <Image source={{uri:"https://image.ibb.co/e1pWu9/back.jpg"}} style={{position:"absolute", width:"100%", height:"100%"}} />
+        
+        <Content style={{flex:1}}>
+            <Button style={{position:'absolute',width:'20%',alignSelf:'center',right:'1%',top:20}} full rounded
+             onPress={()=> {if(this.state.page<this.state.maxpage){this.setState({page : parseInt(this.state.page) + 1})}}}>
+            <Text style={{color:"white"}}>بعدی</Text>
+            </Button>
 
+            <Item style={{width: '10%',height:21,left:"40%",position:'absolute',top:35,backgroundColor:'white'}}>
+              <Input numberOfLines={1}
+                style={{color:"black"}}
+                onChangeText={(text) => this.setState({page: text})}
+                value={this.state.page+""}
+              />
+            </Item>
+
+            <Text style={{width: '10%',position:'absolute',alignSelf:'center',left:"50%",top:35,backgroundColor:'white',fontSize:17}}>/ {this.state.maxpage}</Text>
+            
+            <Button style={{position:'absolute',alignSelf:'center',width:'20%',left:'1%',top:20}} full rounded
+            onPress={()=> {if(this.state.page>1){this.setState({page : parseInt(this.state.page) - 1})}}}>
+            <Text style={{color:"white"}}>قبلی</Text>
+            </Button>
+        </Content>
+      
       </Container>
     );
   }
