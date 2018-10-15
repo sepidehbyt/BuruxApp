@@ -32,7 +32,7 @@ var API_URL = require('../config/config.js');
     }
     })
 
-class photon extends Component {
+class catalogue extends Component {
     constructor(props) {
         super(props);
         this.state =  {
@@ -44,13 +44,14 @@ class photon extends Component {
           renderer: [],
           products:[],
           description:"",
+          cataloguename:"",
           productRenderer:[]
         };
         global.renderer = [];
       }
 
-    fetch_photons() {
-        fetch(API_URL + '/auth/getPhotons' 
+    fetch_catalogues() {
+        fetch(API_URL + '/auth/getCatalogue' 
         , {
           method: 'GET',
           headers: {
@@ -66,8 +67,8 @@ class photon extends Component {
             for(let i = 0 ; i < countType ; i++){
               global.renderer[i] = i;
             }
-            this.setState({response : responseJson,renderer : global.renderer,description:responseJson[0].description});
-            // alert(JSON.stringify(responseJson));
+            this.setState({response : responseJson,renderer : global.renderer,description:responseJson[0].description,cataloguename:responseJson[0].name});
+            //alert(responseJson[0].name);
           }
           this.forceUpdate();
         })
@@ -77,7 +78,7 @@ class photon extends Component {
       }
 
       componentWillMount(){
-        this.fetch_photons();
+        this.fetch_catalogues();
       }
 
       dataBack(){
@@ -96,32 +97,30 @@ class photon extends Component {
     <Header>
     <Left>
         <Button transparent
-        onPress={()=>{this.props.navigation.navigate('MainPage')}}
+            onPress={()=>{this.props.navigation.navigate('MainPage')}}
         >
-        <Icon name='arrow-back' />
+        <Icon name='arrow-back'/>
         </Button>
     </Left>
     <Right>
-        <Title>فوتون</Title>
+        <Title>کاتالوگ</Title>
     </Right>
     </Header>
     
     <Content>
         <FlatList style={{marginTop:"4%"}}
             horizontal
-            // extraData={this.state.color}
-            // data={this.flatlistdata()}
             data = {this.dataBack()}
             renderItem={({ item: rowData }) => {
             return (
                 <Card style={styles.box}>
                 <CardItem cardBody style={{width:150,height:212}}>
-                <TouchableHighlight style={{height : 212,width:150}} onPress={() => this.setState({description : this.state.response[rowData].description})}>
+                <TouchableHighlight style={{height : 212,width:150}} onPress={() => this.setState({description : this.state.response[rowData].description, cataloguename : this.state.response[rowData].name})}>
                 <Image source={{uri:this.state.response[rowData].imageURL+""}} style={{height: 212,resizeMode:'stretch', width: null, flex: 1}}/>
                 </TouchableHighlight>
                 </CardItem>
                 <CardItem style={{flex:1,backgroundColor:'grey'}}>
-                    <TouchableHighlight onPress={() => {this.props.navigation.navigate('pdfPage',{pdfURL : this.state.response[rowData].pdfURL})}}>
+                    <TouchableHighlight onPress={() => {this.props.navigation.navigate('cataloguepage',{catalogue_id : this.state.response[rowData].catalogue_id})}}>
                     <Icon name='download' style={{textAlign:'center'}} />
                     </TouchableHighlight>
                     <Text note numberOfLines={1} style={{flex:1,fontSize:15,color:'white',textAlign:'center'}}>{this.state.response[rowData].month} {this.state.response[rowData].year}</Text>
@@ -139,8 +138,9 @@ class photon extends Component {
              </Left>
              <Body></Body>
                 <Right>
-                <Text>فوتون</Text>
-                {/* <Text note>ماهنامه داخلی شرکت بروکس</Text> */}
+                <Text>
+                {this.state.cataloguename}
+                </Text>
                 </Right>
             </CardItem>
             <CardItem>
@@ -158,4 +158,4 @@ class photon extends Component {
     )}
 }
 
-export default photon;
+export default catalogue;

@@ -13,10 +13,14 @@ import productList from '../Products/productLists.js';
 import basket from '../Basket/basket.js';
 import starter from '../login/starter.js';
 import SideBar from '../sidebar/sidebar.js';
-import orders from '../orders/orders.js'
+import orders from '../orders/orders.js';
+import catalogue from '../catalogue/catalogue.js';
+import cataloguepage from '../catalogue/cataloguepage.js';
 
 const home = DrawerNavigator(
-  {
+  { 
+    catalogue: { screen: catalogue},
+    cataloguepage: { screen: cataloguepage},
     photonPage: { screen: photonPage},
     starter: { screen: starter},
     RegisterPage: { screen: RegisterPage},

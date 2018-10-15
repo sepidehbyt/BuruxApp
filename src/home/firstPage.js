@@ -23,7 +23,8 @@ class firstPage extends Component {
         {/* <Image source={require('../../assets/back.jpg')} style={{position:"absolute", width:"100%", height:"100%"}} /> */}
         
         <View style={{flex:1}}>
-                <TouchableOpacity onPress={this._onPressButton} style={{position:"absolute",left:0,top:0, width:"56%", height:"46%", borderRadius:8, marginHorizontal:"2%", marginVertical:"2%"}}>
+                <TouchableOpacity onPress={this._onPressButton} style={{position:"absolute",left:0,top:0, width:"56%", height:"46%", borderRadius:8, marginHorizontal:"2%", marginVertical:"2%"}}
+                onPress={()=> {this.props.navigation.navigate('catalogue')}}>
                 <View style={{backgroundColor:"green", flex:1, borderRadius:8}}>
                 <Text style={{color:"black", alignSelf:"center", top:"50%", fontSize:20, marginTop:-10}}> کاتالوگ </Text>
                 </View>
