@@ -32,48 +32,63 @@ class firstPage extends Component {
         {/* <Image source={{uri : "https://image.ibb.co/dEzJFf/002.png"}} style={{ width:"100%", height:"100%"}} /> */}
         
         <View style={{flex:1,backgroundColor:"#00ccff"}}>
-                <TouchableOpacity onPress={this._onPressButton} style={{position:"absolute",left:0,top:0, width:"45%", height:"30%", borderRadius:8, marginHorizontal:"2%", marginVertical:"2%"}}
+                <TouchableOpacity onPress={this._onPressButton} style={{position:"absolute",left:"3%",top:0, width:"40%", height:"30%", borderRadius:8, marginHorizontal:"2%", marginTop:"2%"}}
                 onPress={()=> {this.props.navigation.navigate('catalogue')}}>
-                {/* <Image source={{uri : "https://image.ibb.co/gqyCrL/003.png"}} style={{left:"5%",top:"5%",width:"90%",height:"90%",borderRadius:10}} /> */}
-                
-                {/* <Image source={{uri : "https://image.ibb.co/c1gFBL/004.png"}} style={{width:"100%",height:"100%",resizeMode:'stretch'}} /> */}
-                <View style={{backgroundColor:"green", flex:1, borderRadius:8}}>
-                <Text style={{color:"black", alignSelf:"center", top:"50%", fontSize:20, marginTop:-10}}> کاتالوگ </Text>
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backShadow.png"}} style={{position:'absolute',left:1.5,top:0,width:"100%",height:"100%",borderRadius:10}} />
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backWhite.png"}} style={{borderRadius:8,position:'absolute',left:"13.5%", top:"10%",width:"74%",height:"79%"}} />  
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/icon-cataloge.jpg"}} style={{width:"40%", height:"45%", left:"30%", top:"20%", resizeMode:'stretch'}}/>
+                <View style={{flex:1, borderRadius:8}}>
+                <Text style={{color:"black", alignSelf:"center", top:"50%", fontSize:18, marginTop:-10, fontFamily:'Mj'}}> کاتالوگ </Text>
                 </View>
                 </TouchableOpacity>
                 
-                <TouchableOpacity onPress={this._onPressButton} style={{position:"absolute",left:"50%",top:0, width:"44%", height:"30%", borderRadius:8, marginHorizontal:"2%", marginVertical:"2%"}}>
-                <View style={{backgroundColor:"blue", flex:1, borderRadius:8}}>
-                <Text style={{color:"white", alignSelf:"center", top:"50%", fontSize:20, marginTop:-10}}> بازی </Text>
+                <TouchableOpacity onPress={this._onPressButton} style={{position:"absolute",left:"47%",top:0, width:"40%", height:"30%", borderRadius:8, marginHorizontal:"2%", marginTop:"2%"}}>
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backShadow.png"}} style={{position:'absolute',left:1.5,top:0,width:"100%",height:"100%",borderRadius:10}} />
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backWhite.png"}} style={{borderRadius:8,position:'absolute',left:"13.5%", top:"10%",width:"74%",height:"79%"}} />  
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/icon-game.jpg"}} style={{width:"40%", height:"45%", left:"30%", top:"20%", resizeMode:'stretch'}}/>
+                <View style={{flex:1, borderRadius:8}}>
+                <Text style={{color:"white", alignSelf:"center", top:"50%", fontSize:18, marginTop:-10}}> بازی </Text>
                 </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{position:"absolute",left:0,top:"36%", width:"45%", height:"30%", borderRadius:8, marginHorizontal:"2%"}}
+                <TouchableOpacity style={{position:"absolute",left:"3%",top:"36%", width:"40%", height:"30%", borderRadius:8, marginHorizontal:"2%"}}
                 onPress={()=> {this.props.navigation.navigate('ProductPage')}}>
-                <View style={{backgroundColor:"purple", flex:1, borderRadius:8}}>
-                <Text style={{color:"white", alignSelf:"center", top:"50%", fontSize:20, marginTop:-10}}> محصولات جدید </Text>
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backShadow.png"}} style={{position:'absolute',left:1.5,top:0,width:"100%",height:"100%",borderRadius:10}} />
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backWhite.png"}} style={{borderRadius:8,position:'absolute',left:"13.5%", top:"10%",width:"75.5%",height:"79%"}} />  
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/icon-lamp.jpg"}} style={{width:"40%", height:"45%", left:"30%", top:"20%", resizeMode:'stretch'}}/>
+                <View style={{flex:1, borderRadius:8}}>
+                <Text style={{color:"white", alignSelf:"center", top:"50%", fontSize:18, marginTop:-10}}> محصولات جدید </Text>
                 </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{position:"absolute" ,left:"50%",top:"36%", width:"44%", height:"30%", borderRadius:8, marginHorizontal:"2%"}}
+                <TouchableOpacity style={{position:"absolute" ,left:"47%",top:"36%", width:"40%", height:"30%", borderRadius:8, marginHorizontal:"2%"}}
                 onPress={()=> {this.props.navigation.navigate('WarrantyPage')}}>
-                <View style={{backgroundColor:"lightgreen", flex:1, borderRadius:8}}>
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backShadow.png"}} style={{position:'absolute',left:1.5,top:0,width:"100%",height:"100%",borderRadius:10}} />
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backWhite.png"}} style={{borderRadius:8,position:'absolute',left:"13.5%", top:"10%",width:"75.5%",height:"79%"}} />  
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/icon-marju.jpg"}} style={{width:"40%", height:"45%", left:"30%", top:"20%", resizeMode:'stretch'}}/>
+                {/* <View style={{backgroundColor:"lightgreen", flex:1, borderRadius:8}}>
                 <Text style={{color:"white", alignSelf:"center", top:"50%", fontSize:20, marginTop:-10}}> ثبت مرجوعی </Text>
-                </View>
+                </View> */}
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{position:"absolute",left:0,top:"66%", width:"45%", height:"30%", borderRadius:8, marginHorizontal:"2%", marginTop:"2%"}}
+                <TouchableOpacity style={{position:"absolute",left:"3%",top:"66%", width:"40%", height:"30%", borderRadius:8, marginHorizontal:"2%", marginTop:"2%"}}
                 onPress={()=> {this.props.navigation.navigate('photonPage')}}>
-                <View style={{backgroundColor:"gray", flex:1, borderRadius:8}}>
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backShadow.png"}} style={{position:'absolute',left:1.5,top:0,width:"100%",height:"100%",borderRadius:10}} />
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backWhite.png"}} style={{borderRadius:8,position:'absolute',left:"13.5%", top:"10%",width:"75.5%",height:"79%"}} />  
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/icon-foton.jpg"}} style={{width:"40%", height:"45%", left:"30%", top:"20%", resizeMode:'stretch'}}/>
+                {/* <View style={{backgroundColor:"gray", flex:1, borderRadius:8}}>
                 <Text style={{color:"white", alignSelf:"center", top:"50%", fontSize:20, marginTop:-10}}> فوتون </Text>
-                </View>
+                </View> */}
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{position:"absolute",left:"50%",top:'66%', width:"44%", height:"30%", borderRadius:8, marginHorizontal:"2%", marginTop:"2%"}}
+                <TouchableOpacity style={{position:"absolute",left:"47%",top:'66%', width:"40%", height:"30%", borderRadius:8, marginHorizontal:"2%", marginTop:"2%"}}
                 onPress={()=> {this.props.navigation.navigate('NewsPage')}}>
-                <View style={{backgroundColor:"pink", flex:1, borderRadius:8}}>
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backShadow.png"}} style={{position:'absolute',left:1.5,top:0,width:"100%",height:"100%",borderRadius:10}} />
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/backWhite.png"}} style={{borderRadius:8,position:'absolute',left:"13.5%", top:"10%",width:"75.5%",height:"79%"}} />  
+                <Image source={{uri : "http://195.248.241.97/assets/firstpage/icon-news.jpg"}} style={{width:"40%", height:"45%", left:"30%", top:"20%", resizeMode:'stretch'}}/>
+                {/* <View style={{backgroundColor:"pink", flex:1, borderRadius:8}}>
                 <Text style={{color:"white", alignSelf:"center", top:"50%", fontSize:20, marginTop:-10}}> اخبار </Text>
-                </View>
+                </View> */}
                 </TouchableOpacity>
         </View>
       </Container>
