@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Form, Button, Item, Input } from 'native-base';
-import {Text, Image} from 'react-native';
+import {Text, Image, BackHandler} from 'react-native';
 
 var API_URL = require('../config/config.js');
 
@@ -9,8 +9,13 @@ constructor(props) {
       super(props);
       this.state = {
         response : [],
-        pageNumber : 1
+        pageNumber : 1,
+        page : 1,
+        maxpage : 1,
+        lastnum : 1,
+        renderer : []
       };
+      global.renderer = [];
     }
 
     fetch_cataloguepages() {
@@ -20,14 +25,19 @@ constructor(props) {
         headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImUzYTBiYjU0ZWVmMGFkNTBiYWUwY2U2Mjc1MjA5YTM1ZjM4MDkzMGViOTlkMTZhOWQxMDFkMjUxY2MwMTA3MzI4ZDg4ZjE0NmM3YzQyYTliIn0.eyJhdWQiOiIxIiwianRpIjoiZTNhMGJiNTRlZWYwYWQ1MGJhZTBjZTYyNzUyMDlhMzVmMzgwOTMwZWI5OWQxNmE5ZDEwMWQyNTFjYzAxMDczMjhkODhmMTQ2YzdjNDJhOWIiLCJpYXQiOjE1MzkyNDA0NDQsIm5iZiI6MTUzOTI0MDQ0NCwiZXhwIjoxNTcwNzc2NDQ0LCJzdWIiOiIyNCIsInNjb3BlcyI6W119.VT1TbNRKxkoi5I5wyAOTgurB-KOxBPUlbfA4GdLQmXk2cHQqZiA1ZNaKSPeGsXRKVuqJbHnAE4zU0eMj67_89Rdf69mT7reDdhZHHjzaP7f2SPl6oKdLwr2eZLp-bdBaHz7fIS6X2XTR8a8lJIvqbfOqqdL3VgsIG1aN-xGvLjZKfvPWQe9BsPcniDM16xFTqgmcHoQb204lj9G9HOYrbkgJT76WL08h06tuang93uJe8zUoG6k9jsGccNbgZhM9khcl8tT7eE9rf7Bx9O7msPOoiA5KvE0ezlXdGHPt_Osau9RMCxoE0q-r0JadnAKFJQpdOhHMmklG9U-DF3eHjSo79KTu4AbTxtXUqFBCSBSiM2E8pXS6-qb5DZx97MK3Y-t7fzOuocbh-ECVqc90krEB8m4DKmWqb8pQmJmP21rUaycvAK6s3Ed1tV7rygNCGpxRFnccMcva5XweUy88QUCP3fq3683EvZ2uLYawvng9AAfNsc-QNXq4WonjpIJSV4bmyu5jU4StLiQMePhUi69eBK81x0BYgGn1t4c30CWKyfEEkpVIb-oxinsAhOTqmu7xZtUB5iEbkOzY-OdrPTMPHOTPEtlUo1pnMrZGJjJv-pxX6xID4L7z5N2IoPjMX5yHU2RZRxbVi5xeuxt70iUVXqwuA8dDrXiHp0GJbF8',
+        'Authorization': 'Bearer '+window.access_token,
         },
       }).then((response) => response.json())
       .then((responseJson) => {
         variable = responseJson + '';
         if(variable != 'undefined'){
-          //alert(JSON.stringify(responseJson));
-          this.setState({response : responseJson})
+          // alert(JSON.stringify(responseJson[0].pagenumber));
+          var countType = Object.keys(responseJson).length;
+            for(let i = 0 ; i < countType ; i++){
+              global.renderer[i] = i;
+            }
+            this.setState({response : responseJson,maxpage:this.props.navigation.getParam('pagenumber')});
+
         }
         this.forceUpdate();
       })
@@ -36,11 +46,22 @@ constructor(props) {
       });
     }
 
-  componentWillMount(){
-    this.fetch_cataloguepages();
-    if(this.state.response != undefined) {
-      alert(JSON.stringify(this.state.response));        
+    getimage(){
+      if(this.state.response[0] != undefined && this.state.page === this.state.lastnum && this.state.response[this.state.page-1]!= undefined)
+        {
+          // alert(this.state.page);
+        return (this.state.response[this.state.page-1].imageURL);
+        }
+        else
+          return '';
     }
+
+  componentWillMount(){
+    this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      this.props.navigation.navigate('catalogue');
+      return true;
+    });
+    this.fetch_cataloguepages();
 
   }
   
@@ -48,29 +69,47 @@ constructor(props) {
     return (
       <Container>
         
-        <Image source={{uri:"https://image.ibb.co/e1pWu9/back.jpg"}} style={{position:"absolute", width:"100%", height:"100%"}} />
+        <Image source={{uri:this.getimage()}} style={{position:"absolute", width:"100%", height:"100%"}} />
         
-        <Content style={{flex:1}}>
+            
             <Button style={{position:'absolute',width:'20%',alignSelf:'center',right:'1%',top:20}} full rounded
-             onPress={()=> {if(this.state.page<this.state.maxpage){this.setState({page : parseInt(this.state.page) + 1})}}}>
+             onPress={()=> this.props.navigation.navigate('catalogue')}>
+            <Text style={{color:"white"}}>بازگشت</Text>
+            </Button>
+
+
+            <Button style={{position:'absolute',width:'20%',alignSelf:'center',right:'1%',top:20}} full rounded
+             onPress={()=> {if(this.state.lastnum<this.state.maxpage){this.setState({lastnum : parseInt(this.state.lastnum) + 1,page: parseInt(this.state.lastnum) + 1})}}}>
             <Text style={{color:"white"}}>بعدی</Text>
             </Button>
 
             <Item style={{width: '10%',height:21,left:"40%",position:'absolute',top:35,backgroundColor:'white'}}>
               <Input numberOfLines={1}
-                style={{color:"black"}}
-                onChangeText={(text) => this.setState({page: text})}
-                value={this.state.page+""}
+                style={{color:"black",top:2}}
+                onSubmitEditing={()=>{
+                  if(parseInt(this.state.lastnum) < (parseInt(this.state.maxpage) + 1) & parseInt(this.state.lastnum) > 0){
+                    if(parseInt(this.state.lastnum) > 0){
+                      this.setState({page:this.state.lastnum});
+                    }else{
+                      this.setState({lastnum:this.state.page});
+                    }
+                  }else{
+                    this.setState({lastnum:this.state.page});
+                  }
+                }}
+                onChangeText={(text) => {
+                    this.setState({lastnum : text});
+                }}
+                value={this.state.lastnum+""}
               />
             </Item>
 
-            <Text style={{width: '10%',position:'absolute',alignSelf:'center',left:"50%",top:35,backgroundColor:'white',fontSize:17}}>/ {this.state.maxpage}</Text>
+            <Text style={{width: '10%',height:21,position:'absolute',alignSelf:'center',left:"50%",top:35,backgroundColor:'white',fontSize:17}}>/ {this.state.maxpage}</Text>
             
             <Button style={{position:'absolute',alignSelf:'center',width:'20%',left:'1%',top:20}} full rounded
-            onPress={()=> {if(this.state.page>1){this.setState({page : parseInt(this.state.page) - 1})}}}>
+            onPress={()=> {if(this.state.lastnum>1){this.setState({lastnum : parseInt(this.state.lastnum) - 1,page: parseInt(this.state.lastnum) - 1})}}}>
             <Text style={{color:"white"}}>قبلی</Text>
             </Button>
-        </Content>
       
       </Container>
     );

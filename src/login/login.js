@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Form, Item, Input, Label, Button, Icon, Toast, Root } from 'native-base';
-import {StyleSheet,Text, Image, AsyncStorage} from 'react-native';
+import {StyleSheet,Text, Image, AsyncStorage,BackHandler} from 'react-native';
 import Modal from 'react-native-modalbox';
 
 var API_URL = require('../config/config.js');
@@ -70,6 +70,7 @@ text: {
 });
 
 
+
 class login extends Component {
 constructor(props) {
       super(props);
@@ -101,6 +102,10 @@ constructor(props) {
     }
 
     componentWillMount(){
+      this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+        this.props.navigation.navigate('starter');
+        return true;
+      });
       this._retrieveData();
     }
 
@@ -233,8 +238,9 @@ constructor(props) {
           loadedpass:window.Password
         });
         window.access_token = await AsyncStorage.getItem('key:Token');
-        if(value !== null) {
-          console.log(value);
+        
+        if(window.access_token !== null) {
+          this.props.navigation.navigate('MainPage');
         }
        } catch (error) {
          // Error retrieving data

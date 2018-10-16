@@ -18,15 +18,15 @@ import catalogue from '../catalogue/catalogue.js';
 import cataloguepage from '../catalogue/cataloguepage.js';
 
 const home = DrawerNavigator(
-  { 
+  {
+    starter: { screen: starter},
     catalogue: { screen: catalogue},
+    ProductPage : { screen: ProductPage},
     cataloguepage: { screen: cataloguepage},
     photonPage: { screen: photonPage},
-    starter: { screen: starter},
     RegisterPage: { screen: RegisterPage},
     orders: { screen: orders},
     productList: { screen: productList},
-    ProductPage : { screen: ProductPage},
     ProductSeries: { screen: ProductSeries},
     NewsPage: { screen: NewsPage},
     LoginPage: { screen: LoginPage},

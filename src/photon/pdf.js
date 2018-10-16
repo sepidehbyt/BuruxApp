@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { Container, Header, Body, Content, Form, Item, Input, Label, Button, Icon, Right, Left, Title, Card, CardItem, Thumbnail } from 'native-base';
-import {WebView} from 'react-native';
+import {WebView,BackHandler} from 'react-native';
   
 
 class pdf extends React.Component {
+
+    componentWillMount(){
+        this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+            this.props.navigation.navigate('photonPage');
+            return true;
+          });
+    }
 
     render() {
     return (

@@ -5,13 +5,13 @@ import { TabNavigator } from "react-navigation";
 import register from '../register/register';
 import firstPage from './firstPage';
 import LoginPage from '../login/login';
-import ProductList from '../Products/productLists.js';
+import ProductLists from '../Products/productLists.js';
 import orders from '../orders/orders.js';
 
 export default (main = TabNavigator(
     {
       FirstPage: { screen: firstPage },
-      JadeChat: { screen: ProductList },
+      JadeChat: { screen: ProductLists },
       NineChat: { screen: orders }
     },
     {
@@ -28,7 +28,7 @@ export default (main = TabNavigator(
             </Button>
             <Button vertical
             active={props.navigationState.index === 1}
-            onPress={() => props.navigation.navigate("JadeChat")}>
+            onPress={() => props.navigation.navigate("JadeChat",{token : window.access_token})}>
               <Icon name="ios-archive" />
               <Text style={{color:"white"}}>ثبت سفارش</Text>
             </Button>

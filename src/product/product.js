@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Alert,ListView } from 'react-native';
+import { Image, Alert,ListView,BackHandler } from 'react-native';
 import Dialog from "react-native-dialog";
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Title } from 'native-base';
 
@@ -43,7 +43,7 @@ class product extends Component {
         headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImUzYTBiYjU0ZWVmMGFkNTBiYWUwY2U2Mjc1MjA5YTM1ZjM4MDkzMGViOTlkMTZhOWQxMDFkMjUxY2MwMTA3MzI4ZDg4ZjE0NmM3YzQyYTliIn0.eyJhdWQiOiIxIiwianRpIjoiZTNhMGJiNTRlZWYwYWQ1MGJhZTBjZTYyNzUyMDlhMzVmMzgwOTMwZWI5OWQxNmE5ZDEwMWQyNTFjYzAxMDczMjhkODhmMTQ2YzdjNDJhOWIiLCJpYXQiOjE1MzkyNDA0NDQsIm5iZiI6MTUzOTI0MDQ0NCwiZXhwIjoxNTcwNzc2NDQ0LCJzdWIiOiIyNCIsInNjb3BlcyI6W119.VT1TbNRKxkoi5I5wyAOTgurB-KOxBPUlbfA4GdLQmXk2cHQqZiA1ZNaKSPeGsXRKVuqJbHnAE4zU0eMj67_89Rdf69mT7reDdhZHHjzaP7f2SPl6oKdLwr2eZLp-bdBaHz7fIS6X2XTR8a8lJIvqbfOqqdL3VgsIG1aN-xGvLjZKfvPWQe9BsPcniDM16xFTqgmcHoQb204lj9G9HOYrbkgJT76WL08h06tuang93uJe8zUoG6k9jsGccNbgZhM9khcl8tT7eE9rf7Bx9O7msPOoiA5KvE0ezlXdGHPt_Osau9RMCxoE0q-r0JadnAKFJQpdOhHMmklG9U-DF3eHjSo79KTu4AbTxtXUqFBCSBSiM2E8pXS6-qb5DZx97MK3Y-t7fzOuocbh-ECVqc90krEB8m4DKmWqb8pQmJmP21rUaycvAK6s3Ed1tV7rygNCGpxRFnccMcva5XweUy88QUCP3fq3683EvZ2uLYawvng9AAfNsc-QNXq4WonjpIJSV4bmyu5jU4StLiQMePhUi69eBK81x0BYgGn1t4c30CWKyfEEkpVIb-oxinsAhOTqmu7xZtUB5iEbkOzY-OdrPTMPHOTPEtlUo1pnMrZGJjJv-pxX6xID4L7z5N2IoPjMX5yHU2RZRxbVi5xeuxt70iUVXqwuA8dDrXiHp0GJbF8',
+        'Authorization': 'Bearer '+window.access_token,
         },
       }).then((response) => response.json())
       .then((responseJson) => {
@@ -65,15 +65,60 @@ class product extends Component {
 
     componentWillMount() {
       // alert(this.props.navigation.getParam('imageURL'));
+      // console.warn(window._username);
+      this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+        this.props.navigation.navigate('MainPage');
+        return true;
+      });
       this.fetch_newProducts();
     }
 
     makerenderer(){
       if(this.state != null){
+      if(this.state.response[0].FimageURL != null){
+        // alert('sela');
         return this.state.refresher;
       }else{
         return [];
       }
+    }else
+      return [];
+    }
+
+    getimage(rowData){
+      if(this.state.response[rowData] != undefined){
+        return this.state.response[rowData].FimageURL;
+      }else{
+        return "";
+      }
+    }
+
+    getFname(rowData){
+      if(this.state.response[rowData] != undefined){
+        return this.state.response[rowData].Fname;
+      }else
+        return "";
+    }
+
+    getNname(rowData){
+      if(this.state.response[rowData] != undefined){
+        return this.state.response[rowData].name;
+      }else
+        return "";
+    }
+
+    getmyimage(rowData){
+      if(this.state.response[rowData] != undefined){
+        return this.state.response[rowData].imageURL;
+      }else
+        return "";
+    }
+
+    getDis(rowData){
+      if(this.state.response[rowData] != undefined){
+        return this.state.response[rowData].description;
+      }else
+        return "";
     }
 
     render() {
@@ -106,25 +151,25 @@ class product extends Component {
                 <Card>
                 <CardItem>
                   <Left>
-                    <Thumbnail source={{uri:this.state.response[rowData].FimageURL+""}} />
+                    <Thumbnail source={{uri:this.getimage(rowData)+""}} />
                   </Left>
                   <Right>
-                      <Text>خانواده {this.state.response[rowData].Fname}</Text>
-                      <Text note>سری {this.state.response[rowData].name}</Text>
+                      <Text>خانواده {this.getFname(rowData)}</Text>
+                      <Text note>سری {this.getNname(rowData)}</Text>
                   </Right>
                 </CardItem>
                 
                 <CardItem cardBody>
                 <Left></Left>
                 <Body>
-                  <Image source={{uri:this.state.response[rowData].imageURL+""}} style={{width: 100, height: 200}}/>
+                  <Image source={{uri:this.getmyimage(rowData)+""}} style={{width: 100, height: 200}}/>
                 </Body>
                 <Right></Right>
                 </CardItem>
                 
                 <CardItem>
                     <Text note style={{flex:1}}>
-                    {this.state.response[rowData].description}
+                    {this.getDis(rowData)}
                     </Text>
                 </CardItem>
     

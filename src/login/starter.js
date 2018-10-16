@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Form, Button } from 'native-base';
-import {Text, Image} from 'react-native';
+import {Text, Image,BackHandler} from 'react-native';
 
 class starter extends Component {
 constructor(props) {
@@ -15,9 +15,14 @@ constructor(props) {
       };
     }
 
-  componentDidMount(){
+  componentWillMount(){
+    this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      BackHandler.exitApp();
+      return true;
+    });
     console.disableYellowBox = true;
   }
+
   
   render() {
     return (

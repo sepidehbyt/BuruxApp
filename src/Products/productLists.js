@@ -5,6 +5,7 @@ import {
   ListView,
   StyleSheet,
   TouchableHighlight,
+  BackHandler,
 } from 'react-native';
 
 import {Icon, Button, Container, Header, Left, Body, Segment,Badge, Right, Accordion, View, Text, Content } from 'native-base';
@@ -18,7 +19,7 @@ class productLists extends Component {
     super(props);
     this.state =  {
         height:0,
-        bulb:"ios-bulb-outline",
+        bulb:"ios-bulb",
         type: "چراغ های",
         dataArray: global.dataArray_light,
         dataSource: new ListView.DataSource({
@@ -43,53 +44,61 @@ class productLists extends Component {
   }
 
 componentWillMount() {
+  // alert(window.access_token);
+        
+  this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+    BackHandler.exitApp();
+    return true;
+  });
   this.fetch_productList();
 }
 
   fetch_productList () {
-    fetch(API_URL + '/auth/getProductFamilies' , {
-      method: 'GET',
-      headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImUzYTBiYjU0ZWVmMGFkNTBiYWUwY2U2Mjc1MjA5YTM1ZjM4MDkzMGViOTlkMTZhOWQxMDFkMjUxY2MwMTA3MzI4ZDg4ZjE0NmM3YzQyYTliIn0.eyJhdWQiOiIxIiwianRpIjoiZTNhMGJiNTRlZWYwYWQ1MGJhZTBjZTYyNzUyMDlhMzVmMzgwOTMwZWI5OWQxNmE5ZDEwMWQyNTFjYzAxMDczMjhkODhmMTQ2YzdjNDJhOWIiLCJpYXQiOjE1MzkyNDA0NDQsIm5iZiI6MTUzOTI0MDQ0NCwiZXhwIjoxNTcwNzc2NDQ0LCJzdWIiOiIyNCIsInNjb3BlcyI6W119.VT1TbNRKxkoi5I5wyAOTgurB-KOxBPUlbfA4GdLQmXk2cHQqZiA1ZNaKSPeGsXRKVuqJbHnAE4zU0eMj67_89Rdf69mT7reDdhZHHjzaP7f2SPl6oKdLwr2eZLp-bdBaHz7fIS6X2XTR8a8lJIvqbfOqqdL3VgsIG1aN-xGvLjZKfvPWQe9BsPcniDM16xFTqgmcHoQb204lj9G9HOYrbkgJT76WL08h06tuang93uJe8zUoG6k9jsGccNbgZhM9khcl8tT7eE9rf7Bx9O7msPOoiA5KvE0ezlXdGHPt_Osau9RMCxoE0q-r0JadnAKFJQpdOhHMmklG9U-DF3eHjSo79KTu4AbTxtXUqFBCSBSiM2E8pXS6-qb5DZx97MK3Y-t7fzOuocbh-ECVqc90krEB8m4DKmWqb8pQmJmP21rUaycvAK6s3Ed1tV7rygNCGpxRFnccMcva5XweUy88QUCP3fq3683EvZ2uLYawvng9AAfNsc-QNXq4WonjpIJSV4bmyu5jU4StLiQMePhUi69eBK81x0BYgGn1t4c30CWKyfEEkpVIb-oxinsAhOTqmu7xZtUB5iEbkOzY-OdrPTMPHOTPEtlUo1pnMrZGJjJv-pxX6xID4L7z5N2IoPjMX5yHU2RZRxbVi5xeuxt70iUVXqwuA8dDrXiHp0GJbF8',
-      },
-    }).then((response) => response.json())
-    .then((responseJson) => {
-      variable = responseJson + '';
-      if(variable != 'undefined'){
-        var countType = Object.keys(responseJson.message).length;
-        for(let i = 0; i < countType; i++) {
-          var countTitle = Object.keys(responseJson.message[i].families).length;
-          for(let j = 0; j <countTitle; j++) {
-            if(responseJson.message[i].type == 'چراغ') {
-              global.dataArray_light.push({
-                title: responseJson.message[i].families[j].title,
-                content: responseJson.message[i].families[j].content
-              });
-              global.products_light[j] = responseJson.message[i].families[j].products;
-              global.products_lightid[j] = responseJson.message[i].families[j].id; 
-              global.dataArray_lightIMG[j] = responseJson.message[i].families[j].imageURL;
-            }
-            else {
-              global.dataArray_lamp.push({
-                title: responseJson.message[i].families[j].title,
-                content: responseJson.message[i].families[j].content
-              });
-              global.products_lamp[j] = responseJson.message[i].families[j].products;
-              global.products_lampid[j] = responseJson.message[i].families[j].id;
-              global.dataArray_lampIMG[j] = responseJson.message[i].families[j].imageURL;
+      fetch(API_URL + '/auth/getProductFamilies' , {
+        method: 'GET',
+        headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImUzOGUxOThjNDZjZDhlNzcwMTU1NTZhMTZkY2NkNGY4ZjY2MGNhZTUwNTM4ZWU2YjkyY2VhM2MyMzc5YzJmZDdjYzAwZTY3NzZiMjk4ZTZjIn0.eyJhdWQiOiIzIiwianRpIjoiZTM4ZTE5OGM0NmNkOGU3NzAxNTU1NmExNmRjY2Q0ZjhmNjYwY2FlNTA1MzhlZTZiOTJjZWEzYzIzNzljMmZkN2NjMDBlNjc3NmIyOThlNmMiLCJpYXQiOjE1Mzk3MTM5MTUsIm5iZiI6MTUzOTcxMzkxNSwiZXhwIjoxNTcxMjQ5OTE1LCJzdWIiOiIyNCIsInNjb3BlcyI6W119.vuYyHbQWZlRE7yUsRiv-VuZY5GDEiqqeJSqe_kV1eIvzQzM95qS3sNItnB4ZNlkLajCkk9H342esBPMyXGmXdsVttyqZ7WIWPdON46861V2KO2Hokp5H7R_MAns4sY-B3vGvlNzIVCwQpoU4zjUf-CZkygCwTP0C1GUZOrNT6BP6MR4G55og-7RwKYQoW13CnKU2cOfJvWpQxvWH-Yr3DqcH3v7oFI1Ap-Bi1lF3JortscR0yz4jXvced4nuHKYSuJcxhmZbfHOEG9UiR5rgL-77_bHk4_dN-k2NCCEe-6kULQumdGIzwrdAfLNHK2rUMXkhQ3PsxE5W-KhalbPQSxMpbzMRNqxT3W0t07znQW3EIyW3YvLjDnTSB7tLsPOZ92KgsxzE0xS_so73dCoAoQLpEE7vIWo-0DcNGw_lX1bxPCRfaffa5RCe9dRk6KrOW_Fl8zlk15DaY2Ysxd41I9Vv_ctwDqKcyLJXO1aiEWJpZwaqcBaJyIaanTq3BvnPMGJqBk4zYAULZCGaBlGIyWnIIkUx6x81vmFK6Binkima6MhxcFT0lUa1WNVCZPaUkQziP_zfUI6rPXMsVL4QLr07cbDf9Esar7i_gKDPQNzijq6L11mr_YP-dJIzaZWEI3aXgl5h43ayGqVz3TOrM2Sem_RHqJZYIh6jvDiOdsI',
+        },
+      }).then((response) => response.json())
+      .then((responseJson) => {
+        variable = responseJson + '';
+        if(variable != 'undefined'){
+          // alert(JSON.stringify(responseJson));
+          var countType = Object.keys(responseJson.message).length;
+          for(let i = 0; i < countType; i++) {
+            var countTitle = Object.keys(responseJson.message[i].families).length;
+            for(let j = 0; j <countTitle; j++) {
+              if(responseJson.message[i].type == 'چراغ') {
+                global.dataArray_light.push({
+                  title: responseJson.message[i].families[j].title,
+                  content: responseJson.message[i].families[j].content
+                });
+                global.products_light[j] = responseJson.message[i].families[j].products;
+                global.products_lightid[j] = responseJson.message[i].families[j].id; 
+                global.dataArray_lightIMG[j] = responseJson.message[i].families[j].imageURL;
+              }
+              else {
+                global.dataArray_lamp.push({
+                  title: responseJson.message[i].families[j].title,
+                  content: responseJson.message[i].families[j].content
+                });
+                global.products_lamp[j] = responseJson.message[i].families[j].products;
+                global.products_lampid[j] = responseJson.message[i].families[j].id;
+                global.dataArray_lampIMG[j] = responseJson.message[i].families[j].imageURL;
+              }
             }
           }
+          this.setState({
+            dataArray : global.dataArray_lamp,bulb:"ios-bulb-outline"
+          });     
         }
-        this.setState({
-          dataArray : global.dataArray_lamp
-        });     
-      }
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+      })
+      .catch((error) => {
+          console.error(error);
+      });
+    
   }
 
 
@@ -99,6 +108,7 @@ componentWillMount() {
     myproducts = [];
     myproductsid = 0;
     myproductIMG = 0;
+    myproductrender = [];
 
     if(this.state.bulb=="ios-bulb" && content.content +1 <= global.products_lamp.length){
       myproducts = global.products_light[content.content];
@@ -109,8 +119,12 @@ componentWillMount() {
       myproductsid = global.products_lampid[content.content];
       myproductIMG = global.dataArray_lampIMG[content.content];
       }
-
+      // alert(myproductsid);
       // alert(myproducts + JSON.stringify(global.products_lamp) + this.state.bulb);
+
+      for(let i = 0; i < Object.keys(myproducts).length; i++){
+        myproductrender[i] = i;
+      }
 
     return (
 
@@ -120,18 +134,18 @@ componentWillMount() {
         
         dataSource ={ new ListView.DataSource({
           rowHasChanged: (r1, r2) => r1 !== r2
-          }).cloneWithRows(myproducts)
+          }).cloneWithRows(myproductrender)
         }
         
         renderRow={(rowData) => (
           <View>
 
-          <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries",{name : rowData,id : myproductsid,family : content.title, imageURL : myproductIMG})}}>
+          <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries",{name : myproducts[rowData],id : myproductsid[rowData],family : content.title, imageURL : myproductIMG})}}>
             <Text
             style={{ backgroundColor: "#e3f1f1", padding: 10 }}
             >
             {
-              rowData
+              myproducts[rowData]
             }
             </Text>
           </TouchableHighlight>
