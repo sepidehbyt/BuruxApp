@@ -29,21 +29,19 @@ constructor(props) {
       <Container>
         <Header />
         
-        <Image source={{uri:"https://image.ibb.co/e1pWu9/back.jpg"}} style={{position:"absolute", width:"100%", height:"100%"}} />
+        <Image source={{uri:"http://195.248.241.97/assets/starter/004.png"}} style={{position:"absolute", width:"100%", height:"100%", resizeMode:'stretch'}} />
         
         <Content>
         <Image source={{uri:"https://image.ibb.co/c3XUgp/Burux.png"}} style={{width:150, height:165, alignSelf:'center'}} />
-          <Form style={{alignSelf:'center',marginTop:'40%'}}>
-            <Button style={{width:'80%',alignSelf:'center',marginTop:'2%'}} full rounded
+            <Button style={{alignSelf:'center',marginTop:'23%',backgroundColor:'#008ed8', width:'40%',alignSelf:'center', borderRadius:8}} full blocked
              onPress={()=> {this.props.navigation.navigate('LoginPage')}}>
-            <Text style={{color:"white"}}>ورود</Text>
+            <Text style={{color:'#89fafa', fontFamily:'Mj_Saudi Arabia', fontSize:17}}>ورود</Text>
             </Button>
             
-            <Button style={{width:'80%',alignSelf:'center',marginTop:'2%'}} full rounded
+            <Button style={{alignSelf:'center',backgroundColor:'#008ed8', width:'40%',alignSelf:'center',marginTop:'10%', borderRadius:8}} full blocked
             onPress={()=> {this.props.navigation.navigate('RegisterPage')}}>
-            <Text style={{color:"white"}}>عضویت</Text>
+            <Text style={{color:'#89fafa', fontFamily:'Mj_Saudi Arabia', fontSize:17}}>عضویت</Text>
             </Button>
-          </Form>
         </Content>
       
       </Container>

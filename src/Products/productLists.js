@@ -247,7 +247,7 @@ componentWillMount() {
 
             renderBackground={() => (
               <View key="background">
-                <Image source={{uri: 'https://image.ibb.co/ecPbe9/Burux_Ads_8.jpg',
+                <Image source={{uri: 'http://195.248.241.97/assets/ProductList/003.png',
                                 width: window.width,
                                 height: PARALLAX_HEADER_HEIGHT}}/>
                 <View style={{position: 'absolute',
@@ -265,7 +265,7 @@ componentWillMount() {
                   width: AVATAR_SIZE,
                   height: AVATAR_SIZE
                 }}/>
-                <Text style={ styles.sectionSpeakerText }>
+                <Text style={ styles.sectionSpeakerText  }>
                  فروش محصولات شرکت بروکس
                 </Text>
                 <Text style={ styles.sectionTitleText }>
@@ -340,7 +340,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     flexDirection: 'column',
-    paddingTop: 100
+    paddingTop: 2
   },
   avatar: {
     opacity:0,
@@ -348,11 +348,13 @@ const styles = StyleSheet.create({
     borderRadius: AVATAR_SIZE / 2
   },
   sectionSpeakerText: {
+    fontFamily:'Mj_Saudi Arabia',
     color: 'white',
     fontSize: 24,
     paddingVertical: 5
   },
   sectionTitleText: {
+    fontFamily:'Mj_Saudi Arabia',
     color: 'white',
     fontSize: 18,
     paddingVertical: 5

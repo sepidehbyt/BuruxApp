@@ -37,5 +37,9 @@
     "react-native-view-pdf": "^0.3.5",
     "react-navigation": "^2.14.2",
     "rn-fetch-blob": "^0.10.13"
+  },
+  "rmpm": {
+    "assets": ["assets/donts/Mj_Saudi Arabia", "assets/donts/Mj_Saudi Arabia XL"]
   }
+
 }
