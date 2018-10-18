@@ -125,19 +125,16 @@ class catalogue extends Component {
     
     return (
     <Container>
-
-    <Header>
-    <Left>
-        <Button transparent
-            onPress={()=>{this.props.navigation.navigate('MainPage')}}
-        >
-        <Icon name='arrow-back'/>
-        </Button>
-    </Left>
-    <Right>
-        <Title>کاتالوگ</Title>
-    </Right>
-    </Header>
+    <Header style={{borderBottomStartRadius:10,borderBottomEndRadius:10,backgroundColor:'#336799'}}>
+        <Left>
+            <Button transparent onPress={()=>{this.props.navigation.navigate('MainPage')}}>
+            <Icon name='arrow-back' />
+            </Button>
+        </Left>
+        <Right style={{flex:0.5}}>
+            <Title style={{fontFamily:'Mj_Saudi Arabia'}}>کاتالوگ</Title>
+        </Right>
+      </Header>
     
     <Content>
         <FlatList style={{marginTop:"4%"}}

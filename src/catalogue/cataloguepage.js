@@ -72,7 +72,7 @@ constructor(props) {
         <Image source={{uri:this.getimage()}} style={{position:"absolute", width:"100%", height:"100%"}} />
         
             
-            <Button style={{position:'absolute',width:'20%',alignSelf:'center',right:'1%',top:20}} full rounded
+            <Button style={{position:'absolute',width:'20%',alignSelf:'center',right:'1%',top:100}} full rounded
              onPress={()=> this.props.navigation.navigate('catalogue')}>
             <Text style={{color:"white"}}>بازگشت</Text>
             </Button>

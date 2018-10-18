@@ -1,69 +1,62 @@
 import React, { Component } from 'react';
-import { AppRegistry, Image, StatusBar } from "react-native";
+import { AppRegistry, Image,View, StatusBar } from "react-native";
 import {
   Text,
   Container,
   List,
-  ListItem,
   Content,
   Icon,
   Left,
   Body,
   Right
 } from "native-base";
-const routes = ["خانه","کاتالوگ","اخبار","خروج"];
-const pages = ["MainPage","MainPage","NewsPage","starter"];
-const num  = ["0","1","2","3"];
-const icons = ["home","ios-contacts","megaphone","ios-arrow-back"]
 export default class Side333Bar extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Content>
+      <Container style={{backgroundColor: 'white'}}>
+        <View style={{flex:1}} >
           <Image
             style={{
-              height: 120,
+              height: "30%",
               width: "100%",
               alignSelf: "stretch",
-              position: "absolute"
+              marginBottom:' 1%'
             }}
-            source={{uri : "https://khaterat.mobi/js/cover.png"}}
+            source={{uri : "http://195.248.241.97/assets/sidebar/001.png"}}
           />
-          <Image
-            square
-            style={{
-              height: 110,
-              width: 100,
-              position: "absolute",
-              alignSelf: "center",
-              top: 20
-            }}
-            source={{uri : 'https://image.ibb.co/c3XUgp/Burux.png'}}
-          />
-          <List
-            dataArray={num}
-            contentContainerStyle={{ marginTop: 120 }}
-            renderRow={num => {
-              return (
-                <ListItem
-                style = {{ height:80 , alignContent:"flex-end",justifyContent:"flex-end",textAlign:"right",alignItems:"flex-end"}}
-                  button
-                  onPress={() => {if(pages[num] =="Login"){
-                    try {
-                      AsyncStorage.setItem('key:Token','');
-                    } catch (error) {
-                      // Error saving data
-                    }
-                  }this.props.navigation.navigate(pages[num])}}
-                >
-                <Left><Icon style = {{justifyContent:"flex-start",textAlign:"left",alignItems:"flex-start"}} name={icons[num]}/></Left>
-                  <Right><Text style = {{justifyContent:"flex-end",textAlign:"right",alignItems:"flex-end" , width: 120}}>{routes[num]}</Text></Right>
-                </ListItem>
-              );
-            }}
-          />
-        </Content>
+
+          
+          <View
+                style = {{marginBottom:' 1%',width:"100%", height:"11.6%" , alignContent:"flex-end",justifyContent:"flex-end",textAlign:"right",alignViews:"flex-end"}}>
+                <Image source={{uri : "http://195.248.241.97/assets/sidebar/002.png"}} style={{position: 'absolute',height:"100%",width:"100%",alignSelf: "stretch",}} />
+                <Text style = {{color:'white', justifyContent:"flex-end",textAlign:"right",alignViews:"flex-end",marginRight:40,marginBottom:20,fontFamily:'Mj_Saudi Arabia',fontSize:17  }}>محصولات</Text>
+          </View>
+          <View
+                style = {{marginBottom:' 1%',width:"100%", height:"11.6%" , alignContent:"flex-end",justifyContent:"flex-end",textAlign:"right",alignViews:"flex-end"}}>
+                <Image source={{uri : "http://195.248.241.97/assets/sidebar/003.png"}} style={{position: 'absolute',height:"100%",width:"100%",alignSelf: "stretch",}} />
+                <Text style = {{color:'white',justifyContent:"flex-end",textAlign:"right",alignViews:"flex-end",marginRight:40,marginBottom:20,fontFamily:'Mj_Saudi Arabia',fontSize:17  }}>محصولات جدید</Text>
+          </View>
+          <View
+                style = {{marginBottom:' 1%',width:"100%", height:"11.6%" , alignContent:"flex-end",justifyContent:"flex-end",textAlign:"right",alignViews:"flex-end"}}>
+                <Image source={{uri : "http://195.248.241.97/assets/sidebar/004.png"}} style={{position: 'absolute',height:"100%",width:"100%",alignSelf: "stretch",}} />
+                <Text style = {{color:'white',justifyContent:"flex-end",textAlign:"right",alignViews:"flex-end" ,marginRight:40,marginBottom:20,fontFamily:'Mj_Saudi Arabia',fontSize:17 }}>دانلود اپ</Text>
+          </View>
+          <View
+                style = {{marginBottom:' 1%',width:"100%", height:"11.6%" , alignContent:"flex-end",justifyContent:"flex-end",textAlign:"right",alignViews:"flex-end"}}>
+                <Image source={{uri : "http://195.248.241.97/assets/sidebar/005.png"}} style={{position: 'absolute',height:"100%",width:"100%",alignSelf: "stretch",}} />
+                <Text style = {{color:'white',justifyContent:"flex-end",textAlign:"right",alignViews:"flex-end" ,marginRight:40,marginBottom:20,fontFamily:'Mj_Saudi Arabia',fontSize:17}}>درباره بروکس</Text>
+          </View>
+          <View
+                style = {{marginBottom:' 1%',width:"100%", height:"11.6%" , alignContent:"flex-end",justifyContent:"flex-end",textAlign:"right",alignViews:"flex-end"}}>
+                <Image source={{uri : "http://195.248.241.97/assets/sidebar/006.png"}} style={{position: 'absolute',height:"100%",width:"100%",alignSelf: "stretch",}} />
+                <Text style = {{color:'white',justifyContent:"flex-end",textAlign:"right",alignViews:"flex-end",marginRight:40,marginBottom:20,fontFamily:'Mj_Saudi Arabia',fontSize:17}}>خروج</Text>
+          </View>
+          <View
+                style = {{marginBottom:' 1%',width:"100%", height:"11.6%" , alignContent:"flex-end",justifyContent:"flex-end",textAlign:"right",alignViews:"flex-end"}}>
+                <Image source={{uri : "http://195.248.241.97/assets/sidebar/007.png"}} style={{position: 'absolute',height:"100%",width:"100%",alignSelf: "stretch",}} />
+          </View>
+        </View>
       </Container>
     );
   }

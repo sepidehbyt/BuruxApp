@@ -24,23 +24,23 @@ export default (main = TabNavigator(
       tabBarComponent: props => {
         return (
         <Footer>
-          <FooterTab style={{backgroundColor:"#336799"}}>
+          <FooterTab style={{backgroundColor:"#336799",borderTopStartRadius:10,borderTopEndRadius:10}}>
             <Button vertical style={{backgroundColor:"#336799"}}
             active={props.navigationState.index === 0}
             onPress={() => {firstselectedTitle = 'خانه'; secondselectedTitle = ''; thirdselectedTitle = ''; props.navigation.navigate("FirstPage");}}>
-              <Icon name="home" style={{fontWeight:'bold'}}/>
+              <Icon name="home" style={{color:"white"}}/>
               <Text style={{color:"white", fontFamily:'Mj_Saudi Arabia'}}>{firstselectedTitle}</Text>
             </Button>
             <Button vertical style={{backgroundColor:"#336799"}}
             active={props.navigationState.index === 1}
             onPress={() => {firstselectedTitle = ''; secondselectedTitle = 'سفارش های من'; thirdselectedTitle = '';props.navigation.navigate("JadeChat",{token : window.access_token});}}>
-              <Icon name="ios-archive" />
+              <Icon name="ios-archive" style={{color:"white"}} />
               <Text style={{color:"white", fontFamily:'Mj_Saudi Arabia'}}>{secondselectedTitle}</Text>
             </Button>
             <Button vertical style={{backgroundColor:"#336799"}}
             active={props.navigationState.index === 2}
             onPress={() => {firstselectedTitle = ''; secondselectedTitle = ''; thirdselectedTitle = 'سفارشات'; props.navigation.navigate("NineChat");}}>
-              <Icon name="ios-basket" />
+              <Icon name="ios-basket" style={{color:"white"}} />
               <Text style={{color:"white", fontFamily:'Mj_Saudi Arabia'}}>{thirdselectedTitle}</Text>
             </Button>
             </FooterTab>

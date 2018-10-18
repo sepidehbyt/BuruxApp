@@ -230,36 +230,33 @@ constructor(props) {
       <Container>
         <Header />
 
-        <Modal swipeToClose={false} style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"} isDisabled={this.state.isDisabled}>
-          <Image source={{uri:"https://image.ibb.co/e1pWu9/back.jpg"}} style={{height:'100%',width:'100%',position:'absolute'}}></Image>
-          <Image source={{uri:"https://image.ibb.co/c3XUgp/Burux.png"}} style={{position:'absolute',width:100, height:110, alignSelf:'center'}} />
-          <Item floatingLabel style={{width: '20%',left:'50%',marginTop:'28%'}}>
-              <Label style={{color:"white"}}>کد</Label>
-              <Input
-                style={{color:"white"}}
+              <Modal swipeToClose={false} style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"} isDisabled={this.state.isDisabled}>
+          <Image source={{uri:"http://195.248.241.97/assets/starter/004.png"}} style={{height:'100%',width:'100%',position:'absolute'}}></Image>
+          <Item floatingLabel style={{width: '20%',left:'50%',marginTop:'28%', height:60}}>
+              <Label style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia',textAlign:'right'}}>کد</Label>
+              <Input style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia'}}
                 onChangeText={(text) => this.setState({verCode: text})}
                 value={this.state.verCode}
               />
-          </Item>
-          <Button style={{width:'80%',alignSelf:'center',marginTop:'10%'}} full rounded
+            </Item>
+            <Button style={{width:'40%',alignSelf:'center',backgroundColor:'#008ed8',marginTop:'10%', borderRadius:8}} full rounded
             onPress={()=> {
-              //this.phone_auth_rec(); alert(this.state.verCode);
+              //this.phone_auth_rec(); 
+              //alert(this.state.verCode);
               this.fetch_register();
-              // this.props.navigation.navigate('MainPage');
-
               }}>
-            <Text style={{color:"white"}}>ثبت کد</Text>
-          </Button>
-        </Modal>
+            <Text style={{color:"white",fontFamily:'Mj_Saudi Arabia', marginTop:-5}}>ثبت کد</Text>
+            </Button>
+          </Modal>
 
-        <Image source={{uri:"https://image.ibb.co/e1pWu9/back.jpg"}} style={{position:"absolute", width:"100%", height:"100%"}} />
+        <Image source={{uri:"http://195.248.241.97/assets/starter/004.png"}} style={{left:0,top:0,position:"absolute", width:"100%", height:"100%", resizeMode:'stretch'}} />
+        
         <Content>
-          <Form style={{alignSelf:'center'}}>
-            <Item floatingLabel>
-            <Icon name="person" style={{color:"white"}}></Icon>
-              <Label style={{color:"white"}}>نام و نام خانوادگی</Label>
+            <Item floatingLabel style={{alignSelf:'center',width: '80%'}}>
+            <Icon name="person" style={{color:"#008ed8"}}></Icon>
+              <Label style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia',textAlign:'right', marginTop:-5}}>نام و نام خانوادگی</Label>
               <Input
-                style={{color:"white"}}
+                style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia'}}
                 onChangeText={(text) => {
                   this.setState({name: text})
                   }
@@ -267,11 +264,11 @@ constructor(props) {
                 value={this.state.name}
               />
             </Item>
-            <Item floatingLabel>
-            <Icon name="md-call" style={{color:"white"}}></Icon>
-              <Label style={{color:"white"}}>شماره موبایل</Label>
+            <Item floatingLabel style={{alignSelf:'center',width: '80%',marginTop:10}}>
+            <Icon name="md-call" style={{color:"#008ed8"}}></Icon>
+              <Label style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia',textAlign:'right', marginTop:-5}}>شماره موبایل</Label>
               <Input
-                style={{color:"white"}}
+                style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia'}}
                 onChangeText={(text) => {
                 this.setState({mobileNumber: text})
               }
@@ -279,27 +276,28 @@ constructor(props) {
                 value={this.state.mobileNumber}
               />
             </Item>
-            <Item floatingLabel>
-            <Icon name="calculator" style={{color:"white"}}></Icon>
-              <Label style={{color:"white"}}>شماره مشتری</Label>
+            <Item floatingLabel style={{alignSelf:'center',width: '80%',marginTop:10}}>
+            <Icon name="calculator" style={{color:"#008ed8"}}></Icon>
+              <Label style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia',textAlign:'right', marginTop:-5}}>شماره مشتری</Label>
               <Input
-                style={{color:"white"}}
+                style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia'}}
                 onChangeText={(text) => this.setState({customerNum: text})}
                 value={this.state.customerNum}
                 secureTextEntry={true}
               />
             </Item>
-            <Item floatingLabel>
-            <Icon name="lock" style={{color:"white"}}></Icon>
-              <Label style={{color:"white"}}>رمز عبور</Label>
+            <Item floatingLabel style={{alignSelf:'center',width: '80%',marginTop:10}}>
+            <Icon name="lock" style={{color:"#008ed8"}}></Icon>
+              <Label style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia',textAlign:'right', marginTop:-5}}>رمز عبور</Label>
               <Input
-                style={{color:"white"}}
+                style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia'}}
                 onChangeText={(text) => this.setState({password: text})}
                 value={this.state.password}
                 secureTextEntry={true}
               />
             </Item>
-            <Button style={{width:'80%',alignSelf:'center', marginTop:40}} full rounded
+
+            <Button style={{alignSelf:'center',marginTop:25,backgroundColor:'#008ed8', width:'40%',alignSelf:'center', borderRadius:8}} full blocked
             // onPress={()=> {this.props.navigation.navigate('MainPage')}}>
             onPress={()=>{
               if(this.state.name.length < 5) {
@@ -331,9 +329,8 @@ constructor(props) {
                 this.refs.modal3.open();
               }
               }}>
-            <Text style={{color:"white"}}>ارسال کد</Text>
+            <Text style={{color:'#89fafa',top:5, fontFamily:'Mj_Saudi Arabia', fontSize:17}}>ارسال کد</Text>
             </Button>
-          </Form>
         </Content>
       </Container>
       </Root>

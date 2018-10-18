@@ -254,41 +254,40 @@ constructor(props) {
       <Container>
         <Header />
         <Modal swipeToClose={false} style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"} isDisabled={this.state.isDisabled}>
-          <Image source={{uri:"https://image.ibb.co/e1pWu9/back.jpg"}} style={{height:'100%',width:'100%',position:'absolute'}}></Image>
-          <Image source={{uri:"https://image.ibb.co/c3XUgp/Burux.png"}} style={{position:'absolute',width:100, height:110, alignSelf:'center'}} />
+          <Image source={{uri:"http://195.248.241.97/assets/starter/004.png"}} style={{height:'100%',width:'100%',position:'absolute'}}></Image>
           <Item floatingLabel style={{width: '20%',left:'50%',marginTop:'28%'}}>
-              <Label style={{color:"white"}}>کد</Label>
-              <Input style={{color:"white"}}
+              <Label style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia',textAlign:'right', marginTop:-5}}>کد</Label>
+              <Input style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia'}}
                 onChangeText={(text) => this.setState({verCode: text})}
                 value={this.state.verCode}
               />
             </Item>
-            <Button style={{width:'80%',alignSelf:'center',marginTop:'10%'}} full rounded
+            <Button style={{width:'40%',alignSelf:'center',backgroundColor:'#008ed8',marginTop:'10%', borderRadius:8}} full rounded
             onPress={()=> {
               //this.phone_auth_rec(); 
               //alert(this.state.verCode);
               this.fetch_login();
               }}>
-            <Text style={{color:"white"}}>ثبت کد</Text>
+            <Text style={{color:"white",fontFamily:'Mj_Saudi Arabia'}}>ثبت کد</Text>
             </Button>
           </Modal>
-        <Image source={{uri:"https://image.ibb.co/e1pWu9/back.jpg"}} style={{position:"absolute", width:"100%", height:"100%"}} />
+          <Image source={{uri:"http://195.248.241.97/assets/starter/004.png"}} style={{left:0,top:0,position:"absolute", width:"100%", height:"100%", resizeMode:'stretch'}} />
         
         <Content>
+
         <Image source={{uri:"https://image.ibb.co/c3XUgp/Burux.png"}} style={{width:150, height:165, alignSelf:'center', marginTop:0}} />
-          <Form style={{alignSelf:'center'}}>
-            <Item floatingLabel style={{width: '80%'}}>
-              <Icon name="md-call" style={{color:"white"}}></Icon>
-              <Label style={{color:"white"}}>شماره موبایل</Label>
+            
+            <Item floatingLabel style={{alignSelf:'center',width: '80%',marginTop:100}}>
+              <Icon name="md-call" style={{color:"#008ed8"}}></Icon>
+              <Label style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia',textAlign:'right', marginTop:-5}}>شماره موبایل</Label>
               <Input
-                style={{color:"white"}}
+                style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia'}}
                 onChangeText={(text) => this.setState({mobileNumber: text})}
                 value={this.state.mobileNumber}
               />
             </Item>
-            <Button style={{width:'80%',alignSelf:'center',marginTop:'2%'}} full rounded
-            // onPress={()=> {this.props.navigation.navigate('MainPage')}}>
-            onPress={()=>{
+            <Button style={{alignSelf:'center',marginTop:'2%',backgroundColor:'#008ed8', width:'40%',alignSelf:'center', borderRadius:8}} full blocked
+             onPress={()=>{
               if(this.state.mobileNumber.length != 11) {
                 Toast.show({ 
                   text: 'شماره موبایل وارد شده صحیح نمی باشد',
@@ -307,52 +306,50 @@ constructor(props) {
                 this.refs.modal3.open();
               }
               }}>
-            <Text style={{color:"white"}}>ارسال کد</Text>
+            <Text style={{color:'#89fafa',top:5, fontFamily:'Mj_Saudi Arabia', fontSize:17}}>ارسال کد</Text>
             </Button>
-          </Form>
 
-          <Form style={{alignSelf:'center'}}>
-            <Item floatingLabel style={{width: '80%'}}>
-              <Icon name="calculator" style={{color:"white"}}></Icon>
-              <Label style={{color:"white"}}>شماره مشتری</Label>
+
+            <Item floatingLabel style={{alignSelf:'center',width: '80%',marginTop:20}}>
+              <Icon name="calculator" style={{color:"#008ed8"}}></Icon>
+              <Label style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia',textAlign:'right', marginTop:-5}}>شماره مشتری</Label>
               <Input
-                style={{color:"white"}}
+                style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia'}}
                 onChangeText={(text) => this.setState({customerNum: text})}
                 value={this.state.customerNum}
               />
             </Item>
-            <Item floatingLabel style={{width: '80%'}}>
-              <Icon name="lock" style={{color:"white"}}></Icon>
-              <Label style={{color:"white"}}>رمز عبور</Label>
+            <Item floatingLabel style={{alignSelf:'center',width: '80%',marginTop:20}}>
+              <Icon name="lock" style={{color:"#008ed8"}}></Icon>
+              <Label style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia',textAlign:'right', marginTop:-5}}>رمز عبور</Label>
               <Input
-                style={{color:"white"}}
+                style={{color:"#008ed8",fontFamily:'Mj_Saudi Arabia'}}
                 onChangeText={(text) => this.setState({password: text})}
                 value={this.state.password}
                 secureTextEntry={true}
               />
             </Item>
             
-            <Button style={{width:'80%',alignSelf:'center',marginTop:'2%'}} full rounded
-              onPress={()=> {
-                if(this.state.password.length < 6) {
-                  Toast.show({
-                    text: 'رمز عبور باید بیشتر از 6 حرف باشد',
-                    duration: 3000
-                  });
-                }
-                else if(this.state.customerNum.length ==0) {
-                  Toast.show({
-                    text: 'شماره مشتری شما معتبر نیست',
-                    duration: 3000
-                  });
-                }
-                else {
-                this.fetch_login2();
-                }
-                }}>
-            <Text style={{color:"white"}}>ورود</Text>
+            <Button style={{alignSelf:'center',marginTop:'2%',backgroundColor:'#008ed8', width:'40%',alignSelf:'center', borderRadius:8}} full blocked
+             onPress={()=> {
+              if(this.state.password.length < 6) {
+                Toast.show({
+                  text: 'رمز عبور باید بیشتر از 6 حرف باشد',
+                  duration: 3000
+                });
+              }
+              else if(this.state.customerNum.length ==0) {
+                Toast.show({
+                  text: 'شماره مشتری شما معتبر نیست',
+                  duration: 3000
+                });
+              }
+              else {
+              this.fetch_login2();
+              }
+              }}>
+            <Text style={{color:'#89fafa',top:5, fontFamily:'Mj_Saudi Arabia', fontSize:17}}>ورود</Text>
             </Button>
-          </Form>
 
         </Content>
       

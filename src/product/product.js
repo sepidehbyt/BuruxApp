@@ -124,19 +124,16 @@ class product extends Component {
     render() {
     return (
       <Container>
-
-        <Header>
+        <Header style={{borderBottomStartRadius:10,borderBottomEndRadius:10,backgroundColor:'#336799'}}>
         <Left>
-            <Button transparent
-            onPress={()=>{this.props.navigation.navigate('MainPage')}}
-            >
-              <Icon name='arrow-back' />
+            <Button transparent onPress={()=>{this.props.navigation.navigate('MainPage')}}>
+            <Icon name='arrow-back' />
             </Button>
         </Left>
-        <Right>
-            <Title>محصولات جدید</Title>
+        <Right style={{flex:0.5}}>
+            <Title style={{fontFamily:'Mj_Saudi Arabia'}}>محصولات جدید</Title>
         </Right>
-        </Header>
+      </Header>
 
         <Content>
 

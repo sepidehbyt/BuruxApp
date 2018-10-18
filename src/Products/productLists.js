@@ -19,7 +19,7 @@ class productLists extends Component {
     super(props);
     this.state =  {
         height:0,
-        bulb:"ios-bulb",
+        bulb:"ios-bulb-outline",
         type: "چراغ های",
         dataArray: global.dataArray_light,
         dataSource: new ListView.DataSource({
@@ -84,6 +84,7 @@ componentWillMount() {
                   title: responseJson.message[i].families[j].title,
                   content: responseJson.message[i].families[j].content
                 });
+                
                 global.products_lamp[j] = responseJson.message[i].families[j].products;
                 global.products_lampid[j] = responseJson.message[i].families[j].id;
                 global.dataArray_lampIMG[j] = responseJson.message[i].families[j].imageURL;
@@ -91,7 +92,11 @@ componentWillMount() {
             }
           }
           this.setState({
-            dataArray : global.dataArray_lamp,bulb:"ios-bulb-outline"
+            dataArray : global.dataArray_lamp,dataSource: new ListView.DataSource({
+              rowHasChanged: (r1, r2) => r1 !== r2
+              }).cloneWithRows([
+              'sela'
+              ])
           });     
         }
       })
@@ -105,16 +110,17 @@ componentWillMount() {
 
   _renderContent = (content) => {
 
+
     myproducts = [];
     myproductsid = 0;
     myproductIMG = 0;
     myproductrender = [];
 
-    if(this.state.bulb=="ios-bulb" && content.content +1 <= global.products_lamp.length){
+    if(this.state.bulb=="ios-bulb" && global.products_light[content.content]){
       myproducts = global.products_light[content.content];
       myproductsid = global.products_lightid[content.content];
       myproductIMG = global.dataArray_lightIMG[content.content];
-    }else if(this.state.bulb=="ios-bulb-outline" && content.content +1 <= global.products_light.length){
+    }else if(this.state.bulb=="ios-bulb-outline"){
       myproducts = global.products_lamp[content.content];
       myproductsid = global.products_lampid[content.content];
       myproductIMG = global.dataArray_lampIMG[content.content];
@@ -125,13 +131,14 @@ componentWillMount() {
       for(let i = 0; i < Object.keys(myproducts).length; i++){
         myproductrender[i] = i;
       }
+      
+
 
     return (
-
     <ListView
         ref="ListView"
         style={styles.container}
-        
+
         dataSource ={ new ListView.DataSource({
           rowHasChanged: (r1, r2) => r1 !== r2
           }).cloneWithRows(myproductrender)
@@ -142,7 +149,7 @@ componentWillMount() {
 
           <TouchableHighlight onPress={()=>{this.props.navigation.navigate("ProductSeries",{name : myproducts[rowData],id : myproductsid[rowData],family : content.title, imageURL : myproductIMG})}}>
             <Text
-            style={{ backgroundColor: "#e3f1f1", padding: 10 }}
+            style={{alignSelf:'flex-end',direction:'rtl',textAlign:'right', padding: 10,paddingLeft:20 }}
             >
             {
               myproducts[rowData]
@@ -158,105 +165,105 @@ componentWillMount() {
   
   render() {
     const { onScroll = () => {} } = this.props;
+    
 
     return (
-    <Container>
-        <Header hasSegment>
-        <Left>
-          <Button transparent onPress={()=>{this.props.navigation.openDrawer();}}>
-            <Icon name="menu"/>
-          </Button>
-        </Left>
-        <Body>
-            <Button rounded first style={{width:'30%',justifyContent:'center',borderColor:'white',borderWidth:2}} onPress={()=>{
-                if(this.state.bulb=="ios-bulb"){
-                    this.setState({
-                        bulb:"ios-bulb-outline",
-                        type: "لامپ های",
-                        dataArray:dataArray_lamp,
-                        dataSource : new ListView.DataSource({
-                            rowHasChanged: (r1, r2) => r1 !== r2
-                          }).cloneWithRows([
-                            'eli'
-                          ]),
-                        dataSourceProduct :global.products_lamp
-                    });
-                }else if(this.state.bulb=="ios-bulb-outline"){
-                    this.setState({
-                        bulb:"ios-bulb",
-                        type: "چراغ های",
-                        dataArray:dataArray_light,
-                        dataSource : new ListView.DataSource({
-                            rowHasChanged: (r1, r2) => r1 !== r2
-                          }).cloneWithRows([
-                            'sela'
-                          ]),
-                        dataSourceProduct :global.products_light
-                    });
-                }
-                }}><Icon name={this.state.bulb}/></Button>
-        </Body>
-        <Right>
-        <Button bordered badge vertical style={{marginTop:0}} //-8
-        onPress={()=>{this.props.navigation.navigate('basket')}}>
-              {/* <Badge success style={{top:8}}><Text>2</Text></Badge> */}
-              <Icon name="ios-basket" style={{color:"white"}} />
+      <Container style={{backgroundColor:'#00ccff'}}>
+          <Header hasSegment style={{borderBottomStartRadius:10,borderBottomEndRadius:10,backgroundColor:'#336799'}}>
+          <Left>
+            <Button transparent onPress={()=>{this.props.navigation.openDrawer();}}>
+            <Image source={{uri : "https://image.ibb.co/iZdQVf/001.png"}} style={{width:30,height:30}} />
             </Button>
-        </Right>
-      </Header>
-
-
-      <ListView
-        ref="ListView"
-        style={styles.container}
-        //dataSource={ this.state.dataSource }
-        dataSource ={this.state.dataSource}
-        
-        renderRow={(rowData) => (
-            <View>
-
-
-        <Accordion
-            dataArray={this.state.dataArray}
-            headerStyle={{ backgroundColor: "#b7daf8" }}
-            renderContent={this._renderContent}
-        />
-
-
-
-          {/* <TouchableHighlight
-          onPress={()=> {this.setState({height:60});}}>
-          <View key={rowData} style={ styles.row }>
-            <Text>
-              { rowData }
-            </Text>
-          </View>
-          </TouchableHighlight> */}
-
-          </View>
-         )}
-
-        renderScrollComponent={props => (
-          <ParallaxScrollView
-            onScroll={onScroll}
-            backgroundColor="lightblue"
-            headerBackgroundColor="#333"
-            stickyHeaderHeight={ STICKY_HEADER_HEIGHT }
-            parallaxHeaderHeight={ PARALLAX_HEADER_HEIGHT }
-            backgroundSpeed={10}
-
-            renderBackground={() => (
-              <View key="background">
-                <Image source={{uri: 'http://195.248.241.97/assets/ProductList/003.png',
+          </Left>
+          
+          <Body>
+              <Button rounded first style={{width:'30%',justifyContent:'center',borderColor:'white',borderWidth:2}} onPress={()=>{
+                  if(this.state.bulb=="ios-bulb"){
+                      this.setState({
+                          bulb:"ios-bulb-outline",
+                          type: "لامپ های",
+                          dataArray:dataArray_lamp,
+                          dataSource : new ListView.DataSource({
+                              rowHasChanged: (r1, r2) => r1 !== r2
+                            }).cloneWithRows([
+                              'eli'
+                            ]),
+                          dataSourceProduct :global.products_lamp
+                      });
+                  }else if(this.state.bulb=="ios-bulb-outline"){
+                      this.setState({
+                          bulb:"ios-bulb",
+                          type: "چراغ های",
+                          dataArray:dataArray_light,
+                          dataSource : new ListView.DataSource({
+                              rowHasChanged: (r1, r2) => r1 !== r2
+                            }).cloneWithRows([
+                              'sela'
+                            ]),
+                          dataSourceProduct :global.products_light
+                      });
+                  }
+                  }}><Icon name={this.state.bulb} style={{color:'white'}}/></Button>
+          </Body>
+          <Right>
+          <Button bordered badge vertical style={{marginTop:0}} //-8
+          onPress={()=>{this.props.navigation.navigate('basket')}}>
+                {/* <Badge success style={{top:8}}><Text>2</Text></Badge> */}
+                <Icon name="ios-basket" style={{color:"white"}} />
+              </Button>
+          </Right>
+        </Header>
+  
+  
+        <ListView
+          removeClippedSubviews={false}
+          ref="ListView"
+          style={styles.container}
+          //dataSource={ this.state.dataSource }
+          dataSource ={this.state.dataSource}
+          
+          renderRow={(rowData) => (
+              <View>
+                <Accordion
+                    dataArray={this.state.dataArray}
+                    headerStyle={{ backgroundColor: "#b7daf8",fontFamily:'Mj_Saudi Arabia',direction:'rtl' }}
+                    renderContent={this._renderContent}
+                />
+            {/* <TouchableHighlight
+            onPress={()=> {this.setState({height:60});}}>
+            <View key={rowData} style={ styles.row }>
+              <Text>
+                { rowData }
+              </Text>
+            </View>
+            </TouchableHighlight> */}
+  
+            </View>
+           )}
+  
+          renderScrollComponent={props => (
+            <ParallaxScrollView
+              onScroll={onScroll}
+              backgroundColor="lightblue"
+              headerBackgroundColor="#333"
+              stickyHeaderHeight={ STICKY_HEADER_HEIGHT }
+              parallaxHeaderHeight={ PARALLAX_HEADER_HEIGHT }
+              backgroundSpeed={10}
+  
+              renderBackground={() => (
+                <View key="background">
+                  <Image source={{uri: 'http://195.248.241.97/assets/ProductList/003.png',
+                                  width: window.width,
+                                  height: PARALLAX_HEADER_HEIGHT,
+                                  resizeMode:'stretch'}}/>
+                  <View style={{position: 'absolute',
+                                top: 0,
                                 width: window.width,
+                                backgroundColor: 'rgba(0,0,0,.4)',
                                 height: PARALLAX_HEADER_HEIGHT}}/>
-                <View style={{position: 'absolute',
-                              top: 0,
-                              width: window.width,
-                              backgroundColor: 'rgba(0,0,0,.4)',
-                              height: PARALLAX_HEADER_HEIGHT}}/>
-              </View>
-            )}
+                </View>
+              )}
+              
 
             renderForeground={() => (
               <View key="parallax-header" style={ styles.parallaxHeader }>
@@ -302,13 +309,11 @@ componentWillMount() {
   }
 }
 
-
-
 const window = Dimensions.get('window');
 
-const AVATAR_SIZE = 120;
+const AVATAR_SIZE = 220;
 const ROW_HEIGHT = 60;
-const PARALLAX_HEADER_HEIGHT = 350;
+const PARALLAX_HEADER_HEIGHT = 500;
 const STICKY_HEADER_HEIGHT = 50;
 
 const styles = StyleSheet.create({

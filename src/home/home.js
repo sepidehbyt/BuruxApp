@@ -18,20 +18,20 @@ import catalogue from '../catalogue/catalogue.js';
 import cataloguepage from '../catalogue/cataloguepage.js';
 
 const home = DrawerNavigator(
-  {
+  { 
     starter: { screen: starter},
+    RegisterPage: { screen: RegisterPage},
+    LoginPage: { screen: LoginPage},
+    MainPage: { screen: MainPage},
+    orders: { screen: orders},
     catalogue: { screen: catalogue},
-    ProductPage : { screen: ProductPage},
     cataloguepage: { screen: cataloguepage},
     photonPage: { screen: photonPage},
-    RegisterPage: { screen: RegisterPage},
-    orders: { screen: orders},
     productList: { screen: productList},
+    ProductPage : { screen: ProductPage},
     ProductSeries: { screen: ProductSeries},
     NewsPage: { screen: NewsPage},
-    LoginPage: { screen: LoginPage},
     basket: { screen: basket},
-    MainPage: { screen: MainPage},
     pdfPage: { screen: pdfPage},
     WarrantyPage: { screen: WarrantyPage}
   }
@@ -39,7 +39,7 @@ const home = DrawerNavigator(
   {
     contentComponent: props => <SideBar {...props} />,
     drawerPosition : 'left',
-    drawerWidth: 250,
+    drawerWidth: 300,
     drawerLockMode : 'locked-closed'
   }
   

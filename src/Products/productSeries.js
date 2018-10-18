@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image,ListView, Alert,View,FlatList,BackHandler } from 'react-native';
+import { Image,ListView, Alert,View,FlatList } from 'react-native';
 import Dialog from "react-native-dialog";
 import { Container, Header, Content, Card, CardItem, Thumbnail, Input, Text, Button, Icon, Left, Body, Right, Title } from 'native-base';
 import {ButtonGroup} from 'react-native-elements';
@@ -70,28 +70,22 @@ class productSeries extends Component {
 
       componentWillMount() {
         // alert(this.props.navigation.getParam('imageURL'));
-        this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-          this.props.navigation.navigate('MainPage');
-          return true;
-        });
         this.fetch_productSeries();
       }
 
     fetch_productSeries () {
-      fetch(API_URL + '/auth/getProductSeries/'+this.props.navigation.getParam('id') 
-      //+  this.props.navigation.getParam('id')
+      fetch(API_URL + '/auth/getProductSeries/' +  this.props.navigation.getParam('id')
       , {
         method: 'POST',
         headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+window.access_token,
+        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImIxMDQ2ZTYzMmMzZjZiNjc3ZjMwNDNhNTI3OTZlNjE0YjQ5YmE4OGEzOWRkYWE0NDg5ZWZkZWFjZDE4MGViZDRkNzU1MWI3YmY2Zjg3OGZhIn0.eyJhdWQiOiIzIiwianRpIjoiYjEwNDZlNjMyYzNmNmI2NzdmMzA0M2E1Mjc5NmU2MTRiNDliYTg4YTM5ZGRhYTQ0ODllZmRlYWNkMTgwZWJkNGQ3NTUxYjdiZjZmODc4ZmEiLCJpYXQiOjE1Mzk2MTg1MzgsIm5iZiI6MTUzOTYxODUzOCwiZXhwIjoxNTcxMTU0NTM4LCJzdWIiOiIyNSIsInNjb3BlcyI6W119.V9eck47AKhbAEyFu6v7JgAyGAhmg8SUqO0ikRC7m73F2_QBvG97AJA7QTJPw_cZ3rJTNkVhr1DNvjizcEW2Zy0N8BYAJpJdvSLun21F13oQHcxrw2rjMTo5kaDEkiw4MJDEyGuKbn7nEcc58SL2M2g4slldp39D7JHCCsXXfiYNi2qEcGWfKBVCnccNyQy5arKaCLJ8f0bGBDohY4_PFbo_ZYGcZJX_MXGRiKq-kLnXlK31bwOB3SvIKpSMrl9gGlrnPDMFCcyWlpq7zFpgX8xZWB-QXZoVUHyax8GiNyCCqBi_9lK7FI8hBzUNDL9nlemor01xrqyx7YLlxKgeWDBf_sbufDhX8LMePr0ydx9EGrU0kkPBZs-nwIWsdu5Es0F6irqXwmwISVUMHc3kNtVyjAsSqNnBUkQ1bDyDKywl9dFVDGwmTHimGdcsou_YkIoeCWIOd0pXLgcHtlkZhb1if8sgjSPPiXk5MSg2Hb9-gll1f3E03jRMtoinQkL5ecRI-IiPuUH1gFOcfJTo0pG_u8NGm4Yv5FyWHCat-NcC0tCc8sjzZfwRCCUaxjN-mWx_EcclZsSSCdrZz7h6b9DU99z-LLTdCX_wSLe27LYjltKfZ09mPfq3JIWNz9OXm6VNmeqPYN2B4re9ofR5U9iChgQ5-s0N2T1KA0Ksl9Zs',
         },
       }).then((response) => response.json())
       .then((responseJson) => {
         variable = responseJson + '';
         if(variable != 'undefined'){
-          // alert(this.props.navigation.getParam('id') + '     ' + API_URL + '/auth/getProductSeries/'+this.props.navigation.getParam('id') );
           var countType = Object.keys(responseJson.lamps).length;
           for(let i = 0 ; i < countType ; i++){
             global.renderer[i] = i;
@@ -115,13 +109,13 @@ class productSeries extends Component {
         headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+window.access_token,
+        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImIxMDQ2ZTYzMmMzZjZiNjc3ZjMwNDNhNTI3OTZlNjE0YjQ5YmE4OGEzOWRkYWE0NDg5ZWZkZWFjZDE4MGViZDRkNzU1MWI3YmY2Zjg3OGZhIn0.eyJhdWQiOiIzIiwianRpIjoiYjEwNDZlNjMyYzNmNmI2NzdmMzA0M2E1Mjc5NmU2MTRiNDliYTg4YTM5ZGRhYTQ0ODllZmRlYWNkMTgwZWJkNGQ3NTUxYjdiZjZmODc4ZmEiLCJpYXQiOjE1Mzk2MTg1MzgsIm5iZiI6MTUzOTYxODUzOCwiZXhwIjoxNTcxMTU0NTM4LCJzdWIiOiIyNSIsInNjb3BlcyI6W119.V9eck47AKhbAEyFu6v7JgAyGAhmg8SUqO0ikRC7m73F2_QBvG97AJA7QTJPw_cZ3rJTNkVhr1DNvjizcEW2Zy0N8BYAJpJdvSLun21F13oQHcxrw2rjMTo5kaDEkiw4MJDEyGuKbn7nEcc58SL2M2g4slldp39D7JHCCsXXfiYNi2qEcGWfKBVCnccNyQy5arKaCLJ8f0bGBDohY4_PFbo_ZYGcZJX_MXGRiKq-kLnXlK31bwOB3SvIKpSMrl9gGlrnPDMFCcyWlpq7zFpgX8xZWB-QXZoVUHyax8GiNyCCqBi_9lK7FI8hBzUNDL9nlemor01xrqyx7YLlxKgeWDBf_sbufDhX8LMePr0ydx9EGrU0kkPBZs-nwIWsdu5Es0F6irqXwmwISVUMHc3kNtVyjAsSqNnBUkQ1bDyDKywl9dFVDGwmTHimGdcsou_YkIoeCWIOd0pXLgcHtlkZhb1if8sgjSPPiXk5MSg2Hb9-gll1f3E03jRMtoinQkL5ecRI-IiPuUH1gFOcfJTo0pG_u8NGm4Yv5FyWHCat-NcC0tCc8sjzZfwRCCUaxjN-mWx_EcclZsSSCdrZz7h6b9DU99z-LLTdCX_wSLe27LYjltKfZ09mPfq3JIWNz9OXm6VNmeqPYN2B4re9ofR5U9iChgQ5-s0N2T1KA0Ksl9Zs',
         },
       }).then((response) => response.json())
       .then((responseJson) => {
         variable = responseJson + '';
         if(variable != 'undefined'){
-          alert(JSON.stringify(responseJson));       
+          // alert(API_URL + '/auth/addToBasket?count=' + this.state.count + '&productdetail_id=' + this.props.navigation.getParam('id') + '&watt=' + this.state.response.lamps[this.state.selectedwatt].watt + '&color=' + buttons[this.state.selectedIndex] +'&status=OK');       
         }
         this.forceUpdate();
       })

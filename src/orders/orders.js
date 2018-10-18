@@ -24,32 +24,31 @@ class orders extends Component {
     global.productRenderer= [];
   }
 
-
-      fetch_orders() {
-        fetch(API_URL + '/auth/showOrders' 
-        , {
-          method: 'POST',
-          headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+window.access_token,
-          },
-        }).then((response) => response.json())
-        .then((responseJson) => {
-          variable = responseJson + '';
-          if(variable != 'undefined'){
-            var countType = Object.keys(responseJson).length;
-            for(let i = 0 ; i < countType ; i++){
-              global.renderer[i] = i;
-            }
-            this.setState({response : responseJson,renderer : global.renderer});
+    fetch_orders() {
+      fetch(API_URL + '/auth/showOrders' 
+      , {
+        method: 'POST',
+        headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+window.access_token,
+        },
+      }).then((response) => response.json())
+      .then((responseJson) => {
+        variable = responseJson + '';
+        if(variable != 'undefined'){
+          var countType = Object.keys(responseJson).length;
+          for(let i = 0 ; i < countType ; i++){
+            global.renderer[i] = i;
           }
-          this.forceUpdate();
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-      }
+          this.setState({response : responseJson,renderer : global.renderer});
+        }
+        this.forceUpdate();
+      })
+      .catch((error) => {
+          console.error(error);
+      });
+    }
 
       getrenderer(){
         if(this.state.response != undefined){
@@ -83,16 +82,15 @@ class orders extends Component {
 
     render() {
     return (
-      <Container>
-
-        <Header>
+      <Container style={{backgroundColor:'#00ccff'}}>
+      <Header style={{borderBottomStartRadius:10,borderBottomEndRadius:10,backgroundColor:'#336799'}}>
         <Left>
-        <Button transparent onPress={()=>{this.props.navigation.openDrawer();}}>
-              <Icon name='menu' />
+            <Button transparent onPress={()=>{this.props.navigation.openDrawer();}}>
+            <Image source={{uri : "https://image.ibb.co/iZdQVf/001.png"}} style={{left:10,width:30,height:30}} />
             </Button>
         </Left>
-        <Right>
-            <Title>لیست سفارشات</Title>
+        <Right style={{flex:0.5}}>
+            <Title style={{fontFamily:'Mj_Saudi Arabia'}}>لیست سفارشات</Title>
         </Right>
         </Header>
 
